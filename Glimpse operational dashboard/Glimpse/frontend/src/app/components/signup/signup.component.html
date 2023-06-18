@@ -1,0 +1,112 @@
+
+    <div class="container cls">
+      <div class="row justify-content-center">
+        <div class="col-md-7">
+          <div class="card shadow">
+                 <div class="card-header">
+                   <h2 class="text-center">Sign Up</h2>
+                 </div>
+                 <div class="card-body">
+                   <form (ngSubmit)="signUp(signupForm)"#signupForm="ngForm">
+                      <div class="form-group">
+                       <label for="email">Email:</label>
+                       <input
+                         type="email"
+                         id="email"
+                         class="form-control bg"
+                         [(ngModel)]="signupData.email"
+                         name="email"
+                         required
+                         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                         />
+                       </div>
+                       <div *ngIf="signupForm.controls['email']?.errors?.['pattern']" class="text-danger">
+                       Invalid email format
+                       </div>
+                      <div class="form-group">
+                         <label for="password">Password:</label>
+                         <input
+                         type="password"
+                         id="password"
+                         class="form-control bg"
+                         [(ngModel)]="signupData.password"
+                         name="password"
+                         required
+                         />
+                         <!-- <div class="password-requirements card mt-3">
+                           <div class="card-body">
+                             <h5 class="card-title">Password Requirements:</h5>
+                             <ul class="list-unstyled">
+                               <li [ngClass]="{ 'invalid-requirement': !isPasswordLengthValid() }">At least 8 characters long</li>
+                               <li [ngClass]="{ 'invalid-requirement': !isPasswordContainsUppercase() }">Contains at least one uppercase letter</li>
+                               <li [ngClass]="{ 'invalid-requirement': !isPasswordContainsLowercase() }">Contains at least one lowercase letter</li>
+                               <li [ngClass]="{ 'invalid-requirement': !isPasswordContainsNumber() }">Contains at least one number</li>
+                               <li [ngClass]="{ 'invalid-requirement': !isPasswordContainsSpecialChar() }">Contains at least one special character</li>
+                             </ul>
+                           </div>
+                       </div> -->
+                      </div>
+                     <div class="password-requirements card mt-3">
+                      <div class="card-body">
+                        <h5 class="card-title">Password Requirements:</h5>
+                        <ul class="list-unstyled">
+                          <li [ngClass]="{ 'invalid-requirement': !isPasswordLengthValid() }">At least 8 characters long</li>
+                          <li [ngClass]="{ 'invalid-requirement': !isPasswordContainsUppercase() }">Contains at least one uppercase letter</li>
+                          <li [ngClass]="{ 'invalid-requirement': !isPasswordContainsLowercase() }">Contains at least one lowercase letter</li>
+                          <li [ngClass]="{ 'invalid-requirement': !isPasswordContainsNumber() }">Contains at least one number</li>
+                          <li [ngClass]="{ 'invalid-requirement': !isPasswordContainsSpecialChar() }">Contains at least one special character</li>
+                        </ul>
+                      </div>
+                    </div>
+                     <div class="form-group">
+                       <label for="confirmPassword">Confirm Password:</label>
+                       <input
+                       type="password"
+                       id="confirmPassword"
+                       class="form-control bg"
+                       [(ngModel)]="confirmPassword"
+                       name="confirmPassword"
+                       required
+                       />
+                     </div>
+                     <div class="text-center">
+                       <button class="btn btn-primary up-butn">
+                         Sign Up
+                       </button>
+                     </div>
+                   </form>
+                 </div>
+          </div>
+               <div>
+                <div>
+                    <span class="text mt-4">Already have an account ? </span>
+                    <button class="btn btn-primary in-btn mt-3" (click)="login()">Login</button>
+                </div>
+               </div>
+        </div>
+      </div>
+    </div>
+
+       
+        <!-- 
+<app-loading></app-loading> -->
+<div *ngIf="loading" class="loading-indicator d-flex align-items-end justify-content-start">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="errorMessageModalLabel"></h5>
+      </div>
+      <div class="modal-body">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">     
+</footer>
+

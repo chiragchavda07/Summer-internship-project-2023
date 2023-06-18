@@ -1,0 +1,54 @@
+
+<div class="dashboard">
+  <div class="header header-container">
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="hello-user">
+        <i class="fas fa-user"></i>  Hello User
+      </div>
+      <div class="time">{{currentTime}}</div>
+      <button class="btn hv" (click)="logOut()"> <i class="fas fa-sign-out-alt"></i> Log out</button>
+    </div>
+  </div>
+
+ 
+    <!-- <app-navbar></app-navbar> -->
+    <div *ngIf="showF==0">
+
+      <div class="grid-container">
+        <div class="grid-item">
+          <app-daily-client></app-daily-client>
+        </div>
+        <div class="grid-item">
+          <app-daily-output></app-daily-output>
+        </div>
+        <div class="grid-item">
+          <app-monthly-output></app-monthly-output>
+      </div>
+      <div class="grid-item">
+        <app-consolidate-output></app-consolidate-output>
+      </div>
+      </div>
+  </div>
+  <div *ngIf="showF==1">
+     <app-showfile [fileId]="fID"></app-showfile>
+  </div>
+    <!-- <div *ngIf="grid==0">
+    <div>{{msgFromServer}}</div>
+    <app-dash-home></app-dash-home>
+  </div>
+  <div *ngIf="grid==1">
+    <app-daily-client></app-daily-client>
+  </div>
+  <div *ngIf="grid==2">
+    <app-daily-output></app-daily-output>
+  </div>
+  <div *ngIf="grid==3">
+    <app-monthly-output></app-monthly-output>
+  </div>
+  <div *ngIf="grid==4">
+    <app-consolidate-output></app-consolidate-output>
+  </div> -->
+  <app-footer></app-footer>
+
+</div>
+  

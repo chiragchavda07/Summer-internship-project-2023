@@ -1,0 +1,16 @@
+@import url(../dashboard/dashboard.component.css);
+.showHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .left-side {
+    flex-grow: 1; /* Occupy remaining space */
+    margin-left: 20px;
+  }
+  
+  .right-side {
+    margin-left: 10px; /* Adjust as needed */
+  }
+  

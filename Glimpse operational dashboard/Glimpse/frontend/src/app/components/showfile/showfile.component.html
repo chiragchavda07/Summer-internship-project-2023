@@ -1,0 +1,61 @@
+<div class="showHeader">
+    <div class="left-side">
+      <h4 *ngIf="fileId==1">Daily output file</h4>
+      <h4 *ngIf="fileId==2">Monthly output file</h4>
+      <h4 *ngIf="fileId==3">Consolidated output file</h4>
+    </div>
+    <div class="right-side">
+      <button class="btn btn-primary goback" (click)="goBack()"><i class="fas fa-arrow-left"></i>Go back</button>
+    </div>
+  </div>
+  
+<div class="show-table">
+  <div class="show-table-responsive">
+    <table id="customers">
+    <thead>
+        <tr>
+            <th>app-monthly-output</th>
+            <th>Column 2</th>
+            <th>Column 3</th>
+            <th>Column 1</th>
+            <th>Column 2</th>
+            <th>Column 3</th>
+            <th>Column 1</th>
+            <th>Column 2</th>
+            <th>Column 3</th>
+            <th>Column 1</th>
+            <th>Column 2</th>
+            <th>Column 3</th>
+            <th>Column 1</th>
+            <th>Column 2</th>
+            <th>Column 3</th>
+            <th>Column 1</th>
+            <th>Column 2</th>
+            <th>Column 3</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr  *ngFor="let i of rows">
+            <td>{{i}}</td>
+            <td>Data 2</td>
+            <td>Data 3</td>
+            <td>Data 1</td>
+            <td>Data 2</td>
+            <td>Data 3</td>
+            <td>Data 1</td>
+            <td>Data 2</td>
+            <td>Data 3</td>
+            <td>Data 1</td>
+            <td>Data 2</td>
+            <td>Data 3</td>
+            <td>Data 1</td>
+            <td>Data 2</td>
+            <td>Data 3</td>
+            <td>Data 1</td>
+            <td>Data 2</td>
+            <td>Data 3</td>
+        </tr>
+    </tbody>
+  </table>
+ </div>
+</div>

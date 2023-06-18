@@ -1,0 +1,9 @@
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
+.nvb{
+  background-image: linear-gradient(to bottom, #303C55, #1B2435);
+    color:white;
+  }
+  .navtitle{
+    margin-left: 10px;
+}

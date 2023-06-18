@@ -1,0 +1,86 @@
+<div class="container">
+  <h1 class="text-center head">Welcome to glimpse portal</h1>
+</div>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-header">
+          <h2 class="text-center">Login</h2>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="login(loginForm)" #loginForm="ngForm">
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input
+                type="text"
+                id="email"
+                class="form-control bg"
+                [(ngModel)]="loginData.email"
+                name="email"
+                required
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+              />
+            </div>
+            <!-- <div *ngIf="loginForm.controls['username']?.errors?.['required']" class="text-danger">
+            </div> -->
+            <div *ngIf="loginForm.controls['email']?.errors?.['pattern']" class="text-danger">
+              Invalid email format
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input
+                type="password"
+                id="password"
+                class="form-control bg"
+                [(ngModel)]="loginData.password"
+                name="password"
+                required
+                minlength="8"
+              />
+            </div>
+            <!-- <div *ngIf="loginForm.controls['password']?.errors?.['required']" class="text-danger">
+              *
+            </div> -->
+            <div *ngIf="loginForm.controls['password']?.errors?.['minlength']" class="text-danger">
+              Password must be at least 8 characters long.
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary butn" >
+                <i class="fas fa-sign-in-alt"></i>   Login
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div>
+        <span class="text mt-5">Already have an account ? </span>
+        <button class="btn btn-primary in-btn mt-3" (click)="signUp()">Sign up</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- loading message -->
+<!-- <app-loading></app-loading> -->
+
+<div *ngIf="loading" class="loading-indicator d-flex align-items-end justify-content-start">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="errorMessageModalLabel"></h5>
+      </div>
+      <div class="modal-body">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">  
+</footer>

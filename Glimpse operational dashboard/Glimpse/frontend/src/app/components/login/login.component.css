@@ -1,0 +1,30 @@
+@import '~@fortawesome/fontawesome-free/css/all.css';
+@import url(../dashboard/dashboard.component.css);
+.text{
+  margin-right: 10px;
+  color: black;
+}
+.head{
+    margin-top: 100px;
+    font-weight: bold;
+    color:grey;
+  }
+  .butn{
+    margin: 10px;
+  }
+  .bg{
+    background-color:aliceblue;
+  }
+
+  .in-butn{
+   
+    background-color: #303C55;
+    color: #FFF;
+    border: none;
+    padding: 8px 16px;
+    margin-left: 10px; /* Add margin between text and button */
+      /* padding:2px; 
+      background-color: black;
+      height: 25px;
+      color: white; */
+    }

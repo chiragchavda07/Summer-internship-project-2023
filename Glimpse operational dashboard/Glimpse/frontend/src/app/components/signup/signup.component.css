@@ -1,0 +1,37 @@
+@import url(../dashboard/dashboard.component.css);
+.text{
+  margin-right: 10px;
+  color: black;
+}
+.up-butn{
+  margin: 1px;
+  margin-top: 10px;
+}
+.in-butn{
+   
+  background-color: #303C55;
+  color: #FFF;
+  border: none;
+  padding: 8px 16px;
+  margin-left: 10px; /* Add margin between text and button */
+    /* padding:2px; 
+    background-color: black;
+    height: 25px;
+    color: white; */
+  }
+.cls{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    width: 1100px;
+    align-content: center;
+}
+.bg{
+  background-color:aliceblue;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+}
