@@ -2,6 +2,8 @@
 import { Component,Injectable } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 import { RequestHandlerService } from 'src/app/services/request-handler.service';
+import { Observable } from 'rxjs';
+import { object } from 'prop-types';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +21,7 @@ export class DashboardComponent {
     public startDate: string ="";
     public endDate: string ="";
     public fID:number=-1;
+    public tableArr: any[] = [];
     ngOnInit()
     {
       // this.grid = 0;
@@ -68,13 +71,10 @@ export class DashboardComponent {
         this.greeting = 2; //Good evening!
       }
     }
-    getData():void{
-      // this.serv.getData().subscribe(responce=>{
-      //   console.log(responce);
-      // },(error)=>{
-      //   console.log("Error : "+ error);
-      // });
-      this.serv.getData(this.startDate,this.endDate).subscribe(
+
+    //api calls
+    downloadOp():void{
+      this.serv.downloadCSVdm(this.startDate,this.endDate).subscribe(
         response => {
           console.log("file received");
           const blob = new Blob([response], { type: 'text/csv' });
@@ -87,7 +87,37 @@ export class DashboardComponent {
         }
       )
     }
+    downloadCons():void{
+      this.serv.downloadCons(this.startDate,this.endDate).subscribe(
+        response => {
+          console.log("file received");
+          const blob = new Blob([response], { type: 'text/csv' });
+          const url = window.URL.createObjectURL(blob);
+          window.open(url);
+        },
+        (error:any)=>{
+          this.msgFromServer = error;
+          alert("message not received " + error);
+        }
+      )
+    }
+    displayOp():void{  //to display daily and monthly output file
+       this.serv.displayDm(this.startDate, this.endDate).subscribe(
+        (response : any[])=> {
+          // const json = JSON.stringify(response);
+          // console.log(json);
+          this.tableArr = response;
+          console.log("response pushed in table");
+        },
+        (error:any)=>{
+          this.msgFromServer = error;
+          alert("Internal error " + error);
+        }
+      )
+    }
     showFile(value:number){
+      this.displayOp();
+      console.log("showfile function in dashboard passed");
       this.showF=1;
       this.fID = value;
     }

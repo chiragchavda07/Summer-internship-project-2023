@@ -24,7 +24,6 @@ import { MonthlyOutputComponent } from './components/monthly-output/monthly-outp
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { DashHomeComponent } from './components/dash-home/dash-home.component';
-import { DownloadComponent } from './components/download/download.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -52,7 +51,6 @@ export const FIREBASE_OPTIONS = new InjectionToken<FirebaseOptions>('FirebaseOpt
     NavbarComponent,
     FooterComponent,
     DashHomeComponent,
-    DownloadComponent,
     ShowfileComponent,
   ],
   imports: [

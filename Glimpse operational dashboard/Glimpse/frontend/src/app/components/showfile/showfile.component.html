@@ -35,8 +35,14 @@
         </tr>
     </thead>
     <tbody>
-        <tr  *ngFor="let i of rows">
-            <td>{{i}}</td>
+        <tr  *ngFor="let i of tableArray">
+            <td>
+              {{i.user_name}}
+            </td>
+            <td> 
+              {{i.process_timestamp_local}}
+            </td>
+            <!-- <td>{{i}}</td>
             <td>Data 2</td>
             <td>Data 3</td>
             <td>Data 1</td>
@@ -53,7 +59,7 @@
             <td>Data 3</td>
             <td>Data 1</td>
             <td>Data 2</td>
-            <td>Data 3</td>
+            <td>Data 3</td> -->
         </tr>
     </tbody>
   </table>
