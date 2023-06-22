@@ -1,52 +1,41 @@
+<style>
+   .nd{
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       height: calc(30vh - 50px);
+    }
+ </style>
+
 <h5>Monthly output file</h5>
 <div class="table-container">
 
-    <div class="table-responsive">
+   <div *ngIf="this.dash.dailyGrid.length==0"> <h3 class="nd">No data to show</h3> </div>
+    <div *ngIf="this.dash.dailyGrid.length" class="tbl">
         <table id="customers">
-        <thead>
-            <tr>
-                <th>app-monthly-output</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr  *ngFor="let i of rows">
-                <td>{{i}}</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
-                <td>Data 1</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
-                <td>Data 1</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
-                <td>Data 1</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
-                <td>Data 1</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
-                <td>Data 1</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
-            </tr>
-        </tbody>
+            <thead>
+                <tr>
+                  <th colspan="2">{{this.dash.mopFilename}}</th>
+                </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td>Process Time</td>
+                  <td>{{this.dash.mopProcessTime}}</td>
+               </tr>
+               <tr>
+                  <td>Total Records</td>
+                  <td>{{this.dash.moprecords}}</td>
+               </tr>
+               <tr>
+                  <td>File type</td>
+                  <td>Monthly</td>
+               </tr>
+               <tr>
+                  <td>File extension</td>
+                  <td>.csv</td>
+               </tr>
+            </tbody>
    </table>
 </div>
    <div class="button-container">
@@ -54,3 +43,18 @@
     <button class="btn btn-secondary" (click)="downloadThisfile()"><i class="fas fa-download"></i>  Download</button>
    </div>
 </div>
+  
+<div *ngIf="loading" class=" mt-5 overlay-load">
+   <h2>
+      File is fetching Please wait . . .      
+   </h2>
+   <div class="spinner-border m-4" role="status">
+     <span class="sr-only">Loading...</span>
+   </div>
+ </div>
+ 
+ <!-- Optional: jQuery and Bootstrap JS -->
+ <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+ 

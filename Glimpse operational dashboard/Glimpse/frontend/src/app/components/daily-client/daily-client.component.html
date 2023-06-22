@@ -1,59 +1,46 @@
+<style>
+  .nd{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 30vh;
+   }
+</style>
 <h5>Daily client file</h5>
 <div class="table-container">
-  
-    <div class="table-responsive">
-
+    
+    <div *ngIf="this.dash.dailyGrid.length==0"> <h3 class="nd">No data to show</h3> </div>
+    <div *ngIf="this.dash.dailyGrid.length" class="tbl">
+        
         <table id="customers">
         <thead>
             <tr>
-                <th>app-daily-client</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-            </tr>
-        </thead>
-        <tbody>
-          
-            <tr  *ngFor="let i of rows">
-                <td>{{i}}</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
-                <td>Data 1</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
-                <td>Data 1</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
-                <td>Data 1</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
-                <td>Data 1</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
-                <td>Data 1</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
-            </tr>
-            
-        </tbody>
+                <th>Client name</th>
+                <th>Process start time</th>
+                <th>Process end time</th>
+                <th>File status</th>
+                <th>Total records</th>
+                <th>Valid records</th>
+                <th>Invalid Records</th>
+                <th>Saved Records</th>
+                <th>Failed to save records</th>
+                <th>Error</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let i of this.dash.dailyGrid">
+                <td>{{i.user_name}}</td>
+                <td>{{jsonify(i.status_details).startTime}}</td>
+                <td>{{jsonify(i.status_details).endTime}}</td> 
+                <td>{{jsonify(i.status_details).status}}</td>
+                <td>{{jsonify(i.status_details).totalRecords}}</td>
+                <td>{{jsonify(i.status_details).validCount}}</td>
+                <td>{{jsonify(i.status_details).invalidCount}}</td>
+                <td>{{jsonify(i.status_details).successCount}}</td> 
+                <td>{{jsonify(i.status_details).failedCount}}</td> 
+                <td>{{jsonify(i.status_details).error.length? "YES" : "NO"}}</td> 
+              </tr>
+          </tbody>
 </table>
 </div>
-   <!-- <div class="button-container">
-    <button class="btn btn-primary btn-css">Expand</button>
-    <button class="btn btn-secondary"><i class="fas fa-download"></i>  Download</button>
-   </div> -->
 </div>

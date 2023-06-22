@@ -49,7 +49,7 @@ export class AuthService {
   }
   logOut(){
     this.fireAuth.signOut().then(()=>{
-      localStorage.removeItem('isLoggedin');
+     localStorage.removeItem('isLoggedin');
      localStorage.removeItem('token');
      this.router.navigate(['./login']);
     },err=>{

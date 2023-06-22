@@ -12,8 +12,6 @@
 
  
     <!-- <app-navbar></app-navbar> -->
-    <div *ngIf="showF==0">
-
       <div class="grid-container">
         <div class="grid-item">
           <app-daily-client></app-daily-client>
@@ -29,7 +27,7 @@
       </div>
       </div>
   </div>
-  <div *ngIf="showF==1">
+  <div *ngIf="showF==1" class="overlay">
      <app-showfile [fileId]="fID" [tableArray]="tableArr"></app-showfile>
   </div>
     <!-- <div *ngIf="grid==0">
@@ -50,5 +48,17 @@
   </div> -->
   <app-footer></app-footer>
 
-</div>
   
+<div *ngIf="loading" class=" mt-5 overlay-load">
+  <h2>
+    Fetching data from server . . .   
+  </h2>
+  <div class="spinner-border m-4" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
+<!-- Optional: jQuery and Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>

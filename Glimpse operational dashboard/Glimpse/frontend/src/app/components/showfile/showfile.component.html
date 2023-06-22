@@ -9,57 +9,58 @@
     </div>
   </div>
   
-<div class="show-table">
+<div *ngIf="fileId==1 || fileId==2"class="show-table">
   <div class="show-table-responsive">
+    <div *ngIf="tableArray.length==0">
+      No data found
+    </div>
     <table id="customers">
     <thead>
         <tr>
-            <th>app-monthly-output</th>
-            <th>Column 2</th>
-            <th>Column 3</th>
-            <th>Column 1</th>
-            <th>Column 2</th>
-            <th>Column 3</th>
-            <th>Column 1</th>
-            <th>Column 2</th>
-            <th>Column 3</th>
-            <th>Column 1</th>
-            <th>Column 2</th>
-            <th>Column 3</th>
-            <th>Column 1</th>
-            <th>Column 2</th>
-            <th>Column 3</th>
-            <th>Column 1</th>
-            <th>Column 2</th>
-            <th>Column 3</th>
+          <th>TradeDate</th>
+          <th>TradeTime</th>
+          <th>DealerInCompetition</th>
+          <th>Side</th>
+          <th>ISIN</th>
+          <th>Ticker</th>
+          <th>Maturity</th>
+          <th>CouponPerc</th>
+          <th>SizeMM</th>
+          <th>Currency</th>
+          <th>Price</th>
+          <th>MidPrice</th>
+          <th>YieldPerc</th>
+          <th>Spread</th>
+          <th>SettlementDate</th>
+          <th>OnVenue</th>
+          <th>Venue</th>
+          <th>ProcessTrade</th>
+          <th>AutoExecution</th>
+          <th>PortfolioTrade</th>
         </tr>
     </thead>
     <tbody>
         <tr  *ngFor="let i of tableArray">
-            <td>
-              {{i.user_name}}
-            </td>
-            <td> 
-              {{i.process_timestamp_local}}
-            </td>
-            <!-- <td>{{i}}</td>
-            <td>Data 2</td>
-            <td>Data 3</td>
-            <td>Data 1</td>
-            <td>Data 2</td>
-            <td>Data 3</td>
-            <td>Data 1</td>
-            <td>Data 2</td>
-            <td>Data 3</td>
-            <td>Data 1</td>
-            <td>Data 2</td>
-            <td>Data 3</td>
-            <td>Data 1</td>
-            <td>Data 2</td>
-            <td>Data 3</td>
-            <td>Data 1</td>
-            <td>Data 2</td>
-            <td>Data 3</td> -->
+          <td>{{i.trade_date}}</td>
+          <td>{{i.trade_time}}</td>
+          <td>{{i.dealers_in_competition != null ? i.dealers_in_competition : "null" }}</td>
+          <td>{{i.side}}</td>
+          <td>{{i.isin}}</td>
+          <td>{{i.ticker}}</td>
+          <td>{{i.maturity}}</td>
+          <td>{{i.coupon_perc !=null ?i.coupon_perc : "null"}}</td>
+          <td>{{i.size_in_MM_actual != null ? i.size_in_MM_actual : "null"}}</td>
+          <td>{{i.currency != null ? i.currency : "null"}}</td>
+          <td>{{i.price !=null ? i.price : "null"}}</td>
+          <td>{{i.mid_price !=null ? i.mid_price:"null"}}</td>
+          <td>{{i.yield_perc !=null ? i.yield_perc:"null"}}</td>
+          <td>{{i.spread!=null ? i.spread : "null" }}</td>
+          <td>{{i.settlement_date}}</td>
+          <td>{{i.on_venue !=null ? i.on_venue:"null"}}</td>
+          <td>{{i.venue!=null?i.venue:"null"}}</td>
+          <td>{{i.process_trade?i.process_trade:"null"}}</td>
+          <td>{{i.auto_execution?i.auto_execution:"null"}}</td>
+          <td>{{i.portfolio_trade?i.portfolio_trade:"null"}}</td>
         </tr>
     </tbody>
   </table>

@@ -17,7 +17,8 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): boolean {
         const isLoggedin = this.auth.getLoggedin();
-        if (isLoggedin) {
+        const token = localStorage.getItem('token');
+        if (isLoggedin && token) {
             // User is logged in, allow access to the dashboard
             console.log('already loggedin ',this.auth.getLoggedin());
             return true;

@@ -1,4 +1,5 @@
 import { Component} from '@angular/core';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 @Component({
   selector: 'app-daily-client',
@@ -6,10 +7,9 @@ import { Component} from '@angular/core';
   styleUrls: ['./daily-client.component.css']
 })
 export class DailyClientComponent {
-  public rows: any[] = [];
-  constructor(){
-    for (let i = 1; i <= 30; i++) {
-      this.rows.push(i);
-    }
+  constructor(public dash:DashboardComponent){
+  }
+  jsonify(value:string){
+    return JSON.parse(value);
   }
 }

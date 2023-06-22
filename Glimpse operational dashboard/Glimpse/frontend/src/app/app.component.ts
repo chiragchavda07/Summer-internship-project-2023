@@ -16,3 +16,7 @@ export class AppComponent {
     this.ath.setLoggedin(false);
   }
 }
+
+window.addEventListener('beforeunload', () => {
+  localStorage.clear(); // Clear localStorage when the page is refreshed or closed
+});

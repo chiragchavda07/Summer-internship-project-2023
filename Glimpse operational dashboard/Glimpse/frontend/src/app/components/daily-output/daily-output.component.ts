@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import { RequestHandlerService } from 'src/app/services/request-handler.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-daily-output',
@@ -7,16 +9,14 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
   styleUrls: ['./daily-output.component.css']
 })
 export class DailyOutputComponent {
-  public rows: any[] = [];
+  public total_records:number=0;
   public s:string="";
   public e:string="";
-  constructor(public dash:DashboardComponent){
+  public loading:boolean=false;
+  public filename:string ="";
+  constructor(public dash:DashboardComponent,public serv:RequestHandlerService){
     this.setSEdate();
-    this.dash.setStartDate(this.s);
-    this.dash.setEndDate(this.e);
-    for (let i = 1; i <= 30; i++) {
-      this.rows.push(i);
-    }
+    this.filename = "GlimpseData"+this.s+"-"+this.e+".csv";
   }
   setSEdate(){
     const date = new Date();
@@ -34,13 +34,46 @@ export class DailyOutputComponent {
      this.e = `${year2}/${month2}/${day2}`;
      console.log(this.s+ " " + this.e);
   }
-  downloadThisfile():void{
-    this.dash.downloadOp();
+  // getDailyOpfile():void{
+  //   this.serv.displayDop().subscribe(
+  //     (response : any[])=> {
+  //       this.total_records = response.length;
+  //       localStorage.setItem('dailyOpfile',JSON.stringify(response));
+  //       console.log("daily output file stored in localstorage");
+  //     },
+  //     (error:any)=>{
+  //       // alert("Server connection error " );
+  //     }
+  //   )
+  // }
+  
+  async downloadThisfile(){
+    this.loading=true;
+    try {
+      const response = await this.serv.downloadCSVdm(1).toPromise();
+      this.loading = false;
+          if(!response){
+            alert("No file to download");
+            return;
+          }
+          console.log("file received");
+          const csvData = response; // Assuming the response contains the CSV data
+          const blob = new Blob([csvData], { type: 'text/csv' });
+          const url = window.URL.createObjectURL(blob);
+          const anchor = document.createElement('a');
+          anchor.href = url;
+          anchor.download = this.filename;
+          anchor.click();
+          window.URL.revokeObjectURL(url);
+    } catch (error) {
+      this.loading=false;
+      alert("Monthly output file couldn't download ");
+    }
   }
-  viewThisfile():void{  // for calling view API to server
-    this.dash.displayOp();
-  }
+ 
   showFile(value:number){
     this.dash.showFile(value);
   }
 }
+
+

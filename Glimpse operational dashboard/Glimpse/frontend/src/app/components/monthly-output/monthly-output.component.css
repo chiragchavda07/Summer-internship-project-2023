@@ -1,1 +1,35 @@
 @import url(../dashboard/dashboard.component.css);
+#tbl{
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 1000px;
+  color: black;
+}
+
+#customers th {
+  /* padding-bottom: 0px; */
+  border-top:black;
+  /* border-radius: 100px; */
+  text-align: center;
+  margin-top: 0px;
+  padding-bottom: 0px;
+  overflow-x: auto;
+  /* background-color: black; */
+  background-image: linear-gradient(to right, #303C55, #1B2435);
+  color:white;
+  width: 700px;
+  /* color: white; */
+  /* padding: 0px; */
+/* margin: 0px;
+color: red; */
+}
+#customers td, #customers th {
+  /* border: 1px solid #ddd; */
+  border: 1px solid rgb(93, 93, 93);
+  background-color: white;
+  /* background-image: linear-gradient(to right, #53687E, #2E3B4F); */
+  padding: 5px;
+  width: 500px;
+  height: calc(5vh);
+  text-align: center;
+}
