@@ -9,14 +9,14 @@ import {AuthService} from './services/auth/auth.service'
 export class AppComponent {
   title = 'Glimpse';
   ngOnInit():void {  
-    localStorage.clear();
+    // localStorage.clear();
   }
   constructor(private ath:AuthService)
   {
-    this.ath.setLoggedin(false);
+    // this.ath.setLoggedin(false);
   }
 }
 
-window.addEventListener('beforeunload', () => {
-  localStorage.clear(); // Clear localStorage when the page is refreshed or closed
-});
+// window.addEventListener('beforeunload', () => {
+//   localStorage.clear(); 
+// });

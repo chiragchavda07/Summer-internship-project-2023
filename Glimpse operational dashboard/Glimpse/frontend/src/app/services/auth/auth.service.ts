@@ -33,7 +33,8 @@ export class AuthService {
   async signUp(email:string,password:string){
      await this.fireAuth.createUserWithEmailAndPassword(email,password).then(()=>{
       this.setLoggedin(true);
-      this.message='User has registered successfully, press ok to get dashboard';
+      localStorage.setItem('token','true');
+      this.message='User has registered successfully, press ok to go dashboard';
       alert(this.message);
       // $('#errorMessageModal').modal('show');
       console.log("registration successful");

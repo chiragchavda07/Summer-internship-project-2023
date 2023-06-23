@@ -64,19 +64,22 @@
                        required
                        />
                      <div class="text-center">
-                       <button class="btn btn-primary up-butn">
+                       <button class="btn btn-primary up-butn mr-5">
                          Sign Up
                        </button>
+                
+                       <span class="text "> </span>
+                         <button class="btn btn-primary up-butn" (click)="login()">Go back to Login</button>
                      </div>
+                     <!-- <div>
+                         <span class="text mt-4">Already have an account ? </span>
+                         <button class="btn btn-primary in-btn mt-3" (click)="login()">Login</button>
+                     </div> -->
                    </form>
                  </div>
           </div>
-               <div>
-                <div>
-                    <span class="text mt-4">Already have an account ? </span>
-                    <button class="btn btn-primary in-btn mt-3" (click)="login()">Login</button>
-                </div>
-               </div>
+           
+
         </div>
       </div>
     </div>
@@ -86,6 +89,7 @@
 
 <footer class="footer">     
 </footer>
+
 
 
 <div *ngIf="loading" class=" mt-5 overlay-load">

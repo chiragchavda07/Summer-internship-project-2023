@@ -16,7 +16,6 @@ import { object } from 'prop-types';
 export class DashboardComponent {
     public currentTime:string | undefined;
     public showF:number=0;
-    public greeting:number=0;
     public startDate: string ="";
     public endDate: string ="";
     public fID:number=-1;
@@ -33,6 +32,8 @@ export class DashboardComponent {
     public mopFilename:string="";
     public moprecords:number=0;
     public mopProcessTime:string="";
+    public showalert:boolean=false;
+    public consGrid:boolean=false;
     ngOnInit()
     {
       this.displayGrids();  //I'm loading daily and monthly output file at the time of initialization of dashboard
@@ -68,35 +69,6 @@ export class DashboardComponent {
         });
        // Set the current time
     }
-    // getTimeIndex()
-    // {
-    //   const currentHour = new Date().getHours();
-    //   if (currentHour < 12) {
-    //     this.greeting = 0; //good morning
-    //   } else if (currentHour < 18) {
-    //     this.greeting = 1; //good afternon
-    //   } else {
-    //     this.greeting = 2; //Good evening!
-    //   }
-    // }
-
-    //api calls
-    // downloadOp():void{
-    //   this.serv.downloadCSVdm(this.startDate,this.endDate).subscribe(
-    //     response => {
-    //       console.log("file received");
-    //       const blob = new Blob([response], { type: 'text/csv' });
-    //       const url = window.URL.createObjectURL(blob);
-    //       window.open(url);
-    //     },
-    //     (error:any)=>{
-    //       this.msgFromServer = error;
-    //       alert("message not received " + error);
-    //     }
-    //   )
-    //   this.startDate = "";
-    //   this.endDate = "";
-    // }
     downloadCons():void{
       if(this.startDate=="" ||this.endDate=="") 
        {
@@ -180,9 +152,10 @@ export class DashboardComponent {
             this.mopProcessTime = JSON.parse(mopGridResponce.status_details).pushStatus.startTimeStamp;     
           } 
           this.loading = false;
+          this.consGrid=true;
         },
         (error: any) => {
-          this.auth.logOut();
+          // this.auth.logOut();
           alert("Server connection error");
           this.loading = false;
         }
@@ -204,6 +177,12 @@ export class DashboardComponent {
     goBack(){
       this.tableArr=[];
       this.showF=0;
+    }
+    showAlert(){
+      this.showalert=true;
+      setTimeout(()=>{
+        this.showalert=false;
+      },3000);
     }
   }
 

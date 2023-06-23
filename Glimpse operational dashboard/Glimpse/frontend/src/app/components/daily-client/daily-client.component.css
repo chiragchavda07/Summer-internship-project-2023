@@ -7,11 +7,25 @@
     overflow-y: auto;
     /* width: auto; */
     /* height: 190px; */
-    height: calc(50vh - 133px);
+    /* height: calc(50vh - 133px); */
+    height: calc(50vh - 170px);
     border: 1px solid rgb(93, 93, 93);
     /* border: #1B2435 solid; */
   } 
-
+.table-container-new{
+  width: 116.5%;
+  margin-top: 10px;
+  padding: 10px;
+  background-color:white;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.292);
+  height: calc(50vh - 100px);
+}
+.table-container-new th {
+  position: sticky;
+  top: 0px; /* Adjust the top position to match the height of the fixed header */
+  z-index: 2;
+}
   #customers td, #customers th {
     /* border: 1px solid #ddd; */
     border: 1px solid rgb(93, 93, 93);

@@ -11,34 +11,13 @@ import { forkJoin } from 'rxjs';
 export class ConsolidateOutputComponent {
   public startDate: string ="";
   public endDate: string ="";
-  public rows: any[] = [];
   public loading:boolean=false;
   constructor(public dash:DashboardComponent,public serv:RequestHandlerService){
-    for (let i = 1; i <= 30; i++) {
-      this.rows.push(i);
-    }
   }
   datePick()
   {
     console.log(this.startDate + " " + this.endDate + " range consolidate output file downloaded ");
     if(this.validDate()){
-      // this.serv.downloadCons(this.startDate,this.endDate).subscribe(
-      //   response => {
-      //     console.log("file received");
-      //     const csvData = response; // Assuming the response contains the CSV data
-      //     const filename = "GlimpseData"+this.startDate+"-"+this.endDate+".csv"; // Set the custom filename here
-      //     const blob = new Blob([csvData], { type: 'text/csv' });
-      //     const url = window.URL.createObjectURL(blob);
-      //     const anchor = document.createElement('a');
-      //     anchor.href = url;
-      //     anchor.download = filename;
-      //     anchor.click();
-      //     window.URL.revokeObjectURL(url);
-      //   },
-      //   (error:any)=>{
-      //     alert("Consolidate file could't fetch ");
-      //   }
-      // )
       this.loading=true;
       const download$ = this.serv.downloadCons(this.startDate,this.endDate)
       download$.subscribe(
@@ -54,8 +33,10 @@ export class ConsolidateOutputComponent {
           anchor.download = filename;
           anchor.click();
           window.URL.revokeObjectURL(url);
+          this.dash.showAlert();
         },
         (error:any)=>{
+          this.loading = false;
           alert("Consolidate output file couldn't downloaded ");
         }
       )

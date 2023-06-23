@@ -29,7 +29,8 @@
 .dashboard{
   display: grid;
   grid-template-rows: auto 1fr auto; /* Adjust the row sizes as needed */
-  height: calc(100vh - 100px); /* Set the height of the dashboard container */
+  height: calc(100vh - 95px); /* Set the height of the dashboard container */
+  background-image: linear-gradient(to bottom, #303C55, #1B2435);
 }
 
 .grid-container {
@@ -39,7 +40,6 @@
   height: calc(100vh - 135px);
   /* width: calc(100vh); */
   background-image: linear-gradient(to bottom, #303C55, #1B2435);
-
 }
 
 .grid-item {
@@ -84,7 +84,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 10px;
+  padding: 5px;
   text-align: center;
   justify-content: right;
   /* background-color: #dc3545; */

@@ -1,76 +1,27 @@
-<div class="table-container">
+<div *ngIf="this.dash.consGrid" class="table-container-new">
+<h5 >Consolidate output file</h5>
 
-    <!-- <div class="table-responsive">
-        <table id="customers">
-        <thead>
-            <tr>
-                <th>app-consolidate-output</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr  *ngFor="let i of rows">
-                <td>{{i}}</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
-                <td>Data 1</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
-                <td>Data 1</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
-                <td>Data 1</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
-                <td>Data 1</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
-                <td>Data 1</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
-            </tr>
-        </tbody>
-</table>
-</div> -->
-<h5>Consolidate output file</h5>
-<form (ngSubmit)="datePick()" >
-    <div class="form-group">
-        <div class="conso-lb">
-            <label for="sdate"> Start Date</label>
-            <input type="date" id="sdate" name="sdate" step="1" [(ngModel)]="startDate">
-        </div>
-        <div class="conso-lb">
+    <form (ngSubmit)="datePick()" >
+        <div style="width: 300px;" class="form-group">
+            <div class="conso-lb">
+                <label for="sdate"> Start Date</label>
+                <input type="date" id="sdate" name="sdate" step="1" [(ngModel)]="startDate">
+            </div>
+            <div class="conso-lb">
             <label for="edate"> End Date</label>
             <input type="date" id="edate" name="edate" step="1" [(ngModel)]="endDate">
-        </div>
-    </div>
-  </form>
+            </div>
+         </div>
+    </form>
 
-<div class="button-container">
-    <!-- <button class="btn btn-primary btn-css" (click)="showFile(3)">View</button> -->
+<div style="margin-top: 40px;"class="button-container">
     <button class="btn btn-secondary" (click)="datePick()"><i class="fas fa-download"></i>  Download</button>
-   </div>
+</div>
 </div>
 
 <div *ngIf="loading" class=" mt-5 overlay-load">
     <h2>
-      It will take time to download the file Please wait . . .   
+        It will take time to download the file Please wait . . .   
     </h2>
     <div class="spinner-border m-4" role="status">
       <span class="sr-only">Loading...</span>

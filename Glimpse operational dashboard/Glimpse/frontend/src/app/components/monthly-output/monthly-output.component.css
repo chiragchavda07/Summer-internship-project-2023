@@ -5,7 +5,17 @@
   width: 1000px;
   color: black;
 }
-
+.table-container-new{
+  width: 147%;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  margin-left: 18px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.292);
+  height: calc(50vh - 75px);
+}
 #customers th {
   /* padding-bottom: 0px; */
   border-top:black;

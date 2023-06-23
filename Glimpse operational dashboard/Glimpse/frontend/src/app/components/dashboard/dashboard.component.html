@@ -12,7 +12,75 @@
 
  
     <!-- <app-navbar></app-navbar> -->
-      <div class="grid-container">
+    <!-- <style>
+     
+      .daily-c{
+        display: grid;
+        height: calc(100vh);
+        background-color: #f2f2f2; 
+        padding:10px;  
+      } 
+      .daily-op{
+        display: grid;
+        height: calc(30vh - 80px);
+        background-color: #f2f2f2; 
+        padding:10px;
+      } 
+      .monthly-op{
+        display: grid;
+        height: calc(30vh - 80px);
+        background-color: #f2f2f2; 
+        padding:10px;
+      } 
+      .cons-op{
+        display: grid;
+        height: calc(30vh - 80px);
+        background-color: #f2f2f2;
+        padding:10px;
+      }  
+    </style> -->
+    <!-- <div class="row">
+      <div class="col-xl-1">
+        <app-daily-client></app-daily-client>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-xl-3 ">
+        <app-daily-output></app-daily-output>
+      </div>
+      <div class="col-xl-3">
+        <app-monthly-output></app-monthly-output>
+      </div>
+      <div class="col-xl-3">
+        <app-consolidate-output></app-consolidate-output>
+      </div>
+    </div> -->
+    <!-- <div class="container-fluid mt-3">
+      <div class="row">
+        <div class="grid-item-new">
+          <app-daily-client></app-daily-client>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col bg-warning grid-item-new">
+          <app-daily-output></app-daily-output>
+        </div>
+        <div class="grid-item-new">
+          <app-monthly-output></app-monthly-output>
+        </div>
+        <div class="grid-item-new">
+          <app-consolidate-output></app-consolidate-output>
+        </div>
+        <div class="col bg-warning">2 of 4</div>
+        <div class="col bg-success">3 of 4</div>
+      </div>
+    </div>
+     -->
+        
+    
+    <!-- <div class="grid-container">
         <div class="grid-item">
           <app-daily-client></app-daily-client>
         </div>
@@ -25,11 +93,33 @@
       <div class="grid-item">
         <app-consolidate-output></app-consolidate-output>
       </div>
+    </div> -->
+    <div class="container m-0">
+
+      <div class="row">
+        <div class="col-md-12">
+          <app-daily-client></app-daily-client>
+        </div>
       </div>
-  </div>
-  <div *ngIf="showF==1" class="overlay">
-     <app-showfile [fileId]="fID" [tableArray]="tableArr"></app-showfile>
-  </div>
+    </div>
+    <div class="container m-0">
+
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-12">
+          <app-daily-output></app-daily-output>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+          <app-consolidate-output></app-consolidate-output>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+          <app-monthly-output></app-monthly-output>
+        </div>
+      </div>
+    </div>
+</div>
+<div *ngIf="showF==1" class="overlay">
+   <app-showfile [fileId]="fID" [tableArray]="tableArr"></app-showfile>
+</div>
     <!-- <div *ngIf="grid==0">
     <div>{{msgFromServer}}</div>
     <app-dash-home></app-dash-home>
@@ -48,7 +138,35 @@
   </div> -->
   <app-footer></app-footer>
 
-  
+
+  <style>
+    .alert {
+        position: absolute;
+        top: 80%;
+        left: -10%;
+        transform: translate(50%, 100%);
+        z-index: 9999;
+        padding: 20px;
+        background-color: #f8f8f8;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+ 
+    .alert.alert-success {
+        background-color: #dff0d8;
+        border-color: #d0e9c6;
+        color: #3c763d;
+    }
+ 
+    /* Add any additional styling you need for the alert box */
+ </style> 
+  <div *ngIf="showalert" class="alert alert-success ">
+    <strong>Success!</strong> File downloaded successfully.
+  </div>
+
+
+
 <div *ngIf="loading" class=" mt-5 overlay-load">
   <h2>
     Fetching data from server . . .   
@@ -56,6 +174,11 @@
   <div class="spinner-border m-4" role="status">
     <span class="sr-only">Loading...</span>
   </div>
+  <!-- <div class="LoaderBalls">
+    <div class="LoaderBalls__item"></div>
+    <div class="LoaderBalls__item"></div>
+    <div class="LoaderBalls__item"></div>
+  </div> -->
 </div>
 
 <!-- Optional: jQuery and Bootstrap JS -->

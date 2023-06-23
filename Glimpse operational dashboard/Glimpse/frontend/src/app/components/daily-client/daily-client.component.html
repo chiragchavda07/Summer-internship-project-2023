@@ -4,15 +4,16 @@
       align-items: center;
       justify-content: center;
       height: 30vh;
+      color: black;
    }
 </style>
-<h5>Daily client file</h5>
-<div class="table-container">
+<div *ngIf="this.dash.dailyGrid.length" class="table-container-new">
+  <h5 >Daily client file</h5>
     
     <div *ngIf="this.dash.dailyGrid.length==0"> <h3 class="nd">No data to show</h3> </div>
-    <div *ngIf="this.dash.dailyGrid.length" class="tbl">
+    <div  class="tbl">
         
-        <table id="customers">
+        <table id="customers" class="table table-hover">
         <thead>
             <tr>
                 <th>Client name</th>

@@ -68,6 +68,7 @@ export class MonthlyOutputComponent {
           anchor.download = this.filename;
           anchor.click();
           window.URL.revokeObjectURL(url);
+          this.dash.showAlert();
     } catch (error) {
       this.loading=false;
       alert("Daily output file couldn't download ");
