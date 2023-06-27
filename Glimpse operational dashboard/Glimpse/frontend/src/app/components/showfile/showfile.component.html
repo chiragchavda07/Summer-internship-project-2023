@@ -16,9 +16,10 @@
     <table id="customers">
     <thead>
         <tr>
+          <th>Sr. no.</th>
           <th>TradeDate</th>
           <th>TradeTime</th>
-          <th>DealerInCompetition</th>
+          <th style="width: 1.5em;">Dealer In Competition</th>
           <th>Side</th>
           <th>ISIN</th>
           <th>Ticker</th>
@@ -39,27 +40,28 @@
         </tr>
     </thead>
     <tbody>
-        <tr  *ngFor="let i of tableArray">
-          <td>{{i.trade_date}}</td>
-          <td>{{i.trade_time}}</td>
-          <td>{{i.dealers_in_competition != null ? i.dealers_in_competition : "null" }}</td>
+        <tr *ngFor="let i of tableArray; let count = index" >
+          <td style="width: 40px;">{{count+1}}</td>
+          <td style="white-space: nowrap;">{{i.trade_date}}</td>
+          <td style="white-space: nowrap;">{{i.trade_time}}</td>
+          <td>{{i.dealers_in_competition}}</td>
           <td>{{i.side}}</td>
           <td>{{i.isin}}</td>
           <td>{{i.ticker}}</td>
-          <td>{{i.maturity}}</td>
-          <td>{{i.coupon_perc !=null ?i.coupon_perc : "null"}}</td>
-          <td>{{i.size_in_MM_actual != null ? i.size_in_MM_actual : "null"}}</td>
-          <td>{{i.currency != null ? i.currency : "null"}}</td>
-          <td>{{i.price !=null ? i.price : "null"}}</td>
-          <td>{{i.mid_price !=null ? i.mid_price:"null"}}</td>
-          <td>{{i.yield_perc !=null ? i.yield_perc:"null"}}</td>
-          <td>{{i.spread!=null ? i.spread : "null" }}</td>
+          <td style="white-space: nowrap;">{{i.maturity}}</td>
+          <td>{{i.coupon_perc}}</td>
+          <td>{{i.size_in_MM_actual}}</td>
+          <td>{{i.currency}}</td>
+          <td>{{i.price}}</td>
+          <td>{{i.mid_price}}</td>
+          <td>{{i.yield_perc}}</td>
+          <td>{{i.spread}}</td>
           <td>{{i.settlement_date}}</td>
-          <td>{{i.on_venue !=null ? i.on_venue:"null"}}</td>
-          <td>{{i.venue!=null?i.venue:"null"}}</td>
-          <td>{{i.process_trade?i.process_trade:"null"}}</td>
-          <td>{{i.auto_execution?i.auto_execution:"null"}}</td>
-          <td>{{i.portfolio_trade?i.portfolio_trade:"null"}}</td>
+          <td style="white-space: nowrap;">{{i.on_venue}}</td>
+          <td style="white-space: nowrap;">{{i.venue}}</td>
+          <td>{{i.process_trade}}</td>
+          <td>{{i.auto_execution}}</td>
+          <td>{{i.portfolio_trade}}</td>
         </tr>
     </tbody>
   </table>

@@ -1,4 +1,3 @@
-import { server_url } from './../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -7,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RequestHandlerService {
-  private server_ip = '192.168.137.193';
+  private server_ip = '192.168.0.161';
   private server_port = '8090'; 
   constructor(public http:HttpClient) { }
   downloadCSVdm(id:number):Observable<any>{

@@ -1,8 +1,8 @@
-<div *ngIf="this.dash.consGrid" class="table-container-new">
+<div class="table-container-new">
 <h5 >Consolidate output file</h5>
 
     <form (ngSubmit)="datePick()" >
-        <div style="width: 300px;" class="form-group">
+        <div style="width: calc(10vh);" class="form-group">
             <div class="conso-lb">
                 <label for="sdate"> Start Date</label>
                 <input type="date" id="sdate" name="sdate" step="1" [(ngModel)]="startDate">
@@ -11,12 +11,12 @@
             <label for="edate"> End Date</label>
             <input type="date" id="edate" name="edate" step="1" [(ngModel)]="endDate">
             </div>
+            <div class="button-container">
+                <button style="margin-top: 10px; margin-bottom: 10px;" class="btn btn-secondary btn-css btn-sm" (click)="datePick()"><i class="fas fa-download"></i>  Download</button>
+            </div>
          </div>
     </form>
 
-<div style="margin-top: 40px;"class="button-container">
-    <button class="btn btn-secondary" (click)="datePick()"><i class="fas fa-download"></i>  Download</button>
-</div>
 </div>
 
 <div *ngIf="loading" class=" mt-5 overlay-load">

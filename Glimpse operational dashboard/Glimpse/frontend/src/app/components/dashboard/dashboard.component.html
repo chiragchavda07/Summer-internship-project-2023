@@ -5,120 +5,32 @@
       <div class="hello-user">
         <i class="fas fa-user"></i>  Hello User
       </div>
-      <div class="time">{{currentTime}}</div>
-      <button class="btn hv" (click)="logOut()"> <i class="fas fa-sign-out-alt"></i> Log out</button>
+      <div style="margin-right: 40px;" class="time ">{{currentTime}}</div>
+      <!-- <button class="btn hv" (click)="logOut()"> <i class="fas fa-sign-out-alt"></i> Log out</button> -->
     </div>
   </div>
 
- 
-    <!-- <app-navbar></app-navbar> -->
-    <!-- <style>
-     
-      .daily-c{
-        display: grid;
-        height: calc(100vh);
-        background-color: #f2f2f2; 
-        padding:10px;  
-      } 
-      .daily-op{
-        display: grid;
-        height: calc(30vh - 80px);
-        background-color: #f2f2f2; 
-        padding:10px;
-      } 
-      .monthly-op{
-        display: grid;
-        height: calc(30vh - 80px);
-        background-color: #f2f2f2; 
-        padding:10px;
-      } 
-      .cons-op{
-        display: grid;
-        height: calc(30vh - 80px);
-        background-color: #f2f2f2;
-        padding:10px;
-      }  
-    </style> -->
-    <!-- <div class="row">
-      <div class="col-xl-1">
-        <app-daily-client></app-daily-client>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="col-xl-3 ">
-        <app-daily-output></app-daily-output>
-      </div>
-      <div class="col-xl-3">
-        <app-monthly-output></app-monthly-output>
-      </div>
-      <div class="col-xl-3">
-        <app-consolidate-output></app-consolidate-output>
-      </div>
-    </div> -->
-    <!-- <div class="container-fluid mt-3">
-      <div class="row">
-        <div class="grid-item-new">
+    <div class="container-fluid">
+      <div class="row" style="height: calc(50vh - 74px);">
+        <div style="margin-bottom: 0;" class="col">
           <app-daily-client></app-daily-client>
         </div>
       </div>
-      <br>
-      <div class="row">
-        <div class="col bg-warning grid-item-new">
+      <div class="row" style="height: calc(50vh - 74px);">
+        <div style="margin-bottom: 0;" class="col-lg-5">
           <app-daily-output></app-daily-output>
         </div>
-        <div class="grid-item-new">
-          <app-monthly-output></app-monthly-output>
-        </div>
-        <div class="grid-item-new">
+        <div style="padding-left: 0; padding-right: 0; margin-bottom: 0;"class="col-lg-2">
           <app-consolidate-output></app-consolidate-output>
         </div>
-        <div class="col bg-warning">2 of 4</div>
-        <div class="col bg-success">3 of 4</div>
-      </div>
-    </div>
-     -->
-        
-    
-    <!-- <div class="grid-container">
-        <div class="grid-item">
-          <app-daily-client></app-daily-client>
-        </div>
-        <div class="grid-item">
-          <app-daily-output></app-daily-output>
-        </div>
-        <div class="grid-item">
-          <app-monthly-output></app-monthly-output>
-      </div>
-      <div class="grid-item">
-        <app-consolidate-output></app-consolidate-output>
-      </div>
-    </div> -->
-    <div class="container m-0">
-
-      <div class="row">
-        <div class="col-md-12">
-          <app-daily-client></app-daily-client>
-        </div>
-      </div>
-    </div>
-    <div class="container m-0">
-
-      <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-12">
-          <app-daily-output></app-daily-output>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-12">
-          <app-consolidate-output></app-consolidate-output>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-12">
+        <div style="margin-bottom: 0;" class="col-lg-5">
           <app-monthly-output></app-monthly-output>
         </div>
       </div>
     </div>
-</div>
-<div *ngIf="showF==1" class="overlay">
-   <app-showfile [fileId]="fID" [tableArray]="tableArr"></app-showfile>
+     <div *ngIf="showF==1" class="overlay">
+     <app-showfile [fileId]="fID" [tableArray]="tableArr"></app-showfile>
+     </div>
 </div>
     <!-- <div *ngIf="grid==0">
     <div>{{msgFromServer}}</div>

@@ -1,6 +1,6 @@
 
 import { Component,Injectable } from '@angular/core';
-import { AuthService } from '../../services/auth/auth.service';
+// import { AuthService } from '../../services/auth/auth.service';
 import { RequestHandlerService } from 'src/app/services/request-handler.service';
 import { Observable, forkJoin } from 'rxjs';
 import { object } from 'prop-types';
@@ -33,18 +33,19 @@ export class DashboardComponent {
     public moprecords:number=0;
     public mopProcessTime:string="";
     public showalert:boolean=false;
-    public consGrid:boolean=false;
+    public dailyclientAvailable:boolean=false;
+    public dailyOpAvailable:boolean=false;
+    public monthlyOpAvailable:boolean=false;
     ngOnInit()
     {
       this.displayGrids();  //I'm loading daily and monthly output file at the time of initialization of dashboard
-      // this.getTimeIndex();
       this.updateCurrentTime(); // Call the method to set initial current time
     setInterval(() => {
       this.updateCurrentTime(); // Update current time every second
     }, 1000);
     }
    
-    constructor(private auth:AuthService,private serv:RequestHandlerService){}
+    constructor(private serv:RequestHandlerService){}
     
     setStartDate(value:string){
       this.startDate =  value;
@@ -52,9 +53,9 @@ export class DashboardComponent {
     setEndDate(value:string){
       this.endDate =  value;
     }
-    logOut(){
-      this.auth.logOut();
-    }
+    // logOut(){
+    //   this.auth.logOut();
+    // }
     updateCurrentTime(): void {
       const date = new Date();
       this.currentTime = date.toLocaleString(
@@ -134,10 +135,12 @@ export class DashboardComponent {
       forkJoin([dailyGrid$, DoPGrid$,MoPGrid$]).subscribe(
         ([dailyGridResponse, dopGridResponce,mopGridResponce]) => {
           this.dailyGrid = dailyGridResponse; //assigning dailyclient file to dailygrid array
+          this.dailyclientAvailable = true;
           if(dopGridResponce)
           {
+            this.dailyOpAvailable=true;
             this.dopFilename = dopGridResponce.filename;
-    
+            console.log("daily output file name : " + this.dopFilename);
             // this.doprecords = this.jsonify(dopGridResponce.status_details).totalRowsSaved;
             this.doprecords = JSON.parse(dopGridResponce.status_details).pushStatus.totalRowsSaved;
             console.log(this.doprecords);
@@ -145,6 +148,7 @@ export class DashboardComponent {
           } 
           if(mopGridResponce)
           {
+            this.monthlyOpAvailable=true;
             this.mopFilename = mopGridResponce.filename;
             // this.moprecords = this.jsonify(dopGridResponce.status_details).totalRowsSaved;
             this.moprecords = JSON.parse(mopGridResponce.status_details).pushStatus.totalRowsSaved;
@@ -152,7 +156,6 @@ export class DashboardComponent {
             this.mopProcessTime = JSON.parse(mopGridResponce.status_details).pushStatus.startTimeStamp;     
           } 
           this.loading = false;
-          this.consGrid=true;
         },
         (error: any) => {
           // this.auth.logOut();

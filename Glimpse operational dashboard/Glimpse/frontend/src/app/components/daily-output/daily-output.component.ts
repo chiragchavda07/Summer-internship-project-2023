@@ -13,10 +13,9 @@ export class DailyOutputComponent {
   public s:string="";
   public e:string="";
   public loading:boolean=false;
-  public filename:string ="";
   constructor(public dash:DashboardComponent,public serv:RequestHandlerService){
     this.setSEdate();
-    this.filename = "GlimpseData"+this.s+"-"+this.e+".csv";
+    // this.filename = "GlimpseData"+this.s+"-"+this.e+".csv";
   }
   setSEdate(){
     const date = new Date();
@@ -62,7 +61,7 @@ export class DailyOutputComponent {
           const url = window.URL.createObjectURL(blob);
           const anchor = document.createElement('a');
           anchor.href = url;
-          anchor.download = this.filename;
+          anchor.download = this.dash.dopFilename;
           anchor.click();
           window.URL.revokeObjectURL(url);
           this.dash.showAlert();

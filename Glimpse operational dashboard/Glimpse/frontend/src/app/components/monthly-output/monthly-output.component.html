@@ -7,11 +7,11 @@
     }
  </style>
 
- <div *ngIf="this.dash.dailyGrid.length" class="table-container-new">
+ <div class="table-container-new">
    <h5>Monthly output file</h5>
 
-   <div *ngIf="this.dash.dailyGrid.length==0"> <h3 class="nd">No data to show</h3> </div>
-    <div class="tbl">
+    <div *ngIf="!this.dash.monthlyOpAvailable"> <h3 class="nd">No data to show</h3> </div>
+    <div *ngIf="this.dash.monthlyOpAvailable" class="tbl">
         <table id="customers" class="table table-hover">
             <thead>
                 <tr>
@@ -35,13 +35,22 @@
                   <td>File extension</td>
                   <td>.csv</td>
                </tr>
+               <tr>
+                  <td>
+                     <button class="btn btn-primary btn-css btn-sm" (click)="showFile(2)">View</button>
+                  </td>
+                  <td>
+                     <button class="btn btn-secondary btn-sm" (click)="downloadThisfile()"><i class="fas fa-download"></i>  Download</button>
+                  </td>
+               </tr>
+
             </tbody>
    </table>
-</div>
-   <div class="button-container">
-    <button class="btn btn-primary btn-css" (click)="showFile(2)">View</button>
-    <button class="btn btn-secondary" (click)="downloadThisfile()"><i class="fas fa-download"></i>  Download</button>
-   </div>
+    </div>
+   <!-- <div class="button-container">
+    <button class="btn btn-primary btn-css btn-sm" (click)="showFile(2)">View</button>
+    <button class="btn btn-secondary btn-sm" (click)="downloadThisfile()"><i class="fas fa-download"></i>  Download</button>
+   </div> -->
 </div>
   
 <div *ngIf="loading" class=" mt-5 overlay-load">

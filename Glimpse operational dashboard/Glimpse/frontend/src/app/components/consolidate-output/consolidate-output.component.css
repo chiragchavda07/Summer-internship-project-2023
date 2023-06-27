@@ -1,9 +1,12 @@
 @import url(../dashboard/dashboard.component.css);
 .table-container-new{
-    width: 65%;
-    margin-top: 10px;
-    margin-left: 175px;
-    margin-bottom: 15px;
+    /* width: 65%; */
+    width: 100%;;
+    /* margin-top: 10px; */
+    /* margin-left: 175px; */
+    /* margin-bottom: 15px; */
+    margin-left: 0;
+    margin-right: 0;
   padding: 20px;
   background-color: white;
   border-radius: 4px;

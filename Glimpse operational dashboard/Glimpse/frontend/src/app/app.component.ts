@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from './services/auth/auth.service'
+// import {AuthService} from './services/auth/auth.service'
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,12 +12,13 @@ export class AppComponent {
   ngOnInit():void {  
     // localStorage.clear();
   }
-  constructor(private ath:AuthService)
-  {
-    // this.ath.setLoggedin(false);
-  }
+  // constructor(private ath:AuthService)
+  // {
+  //   // this.ath.setLoggedin(false);
+  // }
 }
 
 // window.addEventListener('beforeunload', () => {
-//   localStorage.clear(); 
+//   const router = new Router;
+//   router.navigate(['/login']);
 // });

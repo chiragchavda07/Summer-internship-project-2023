@@ -3,6 +3,7 @@
 #tbl{
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
+    margin-bottom: calc(10vh - 10px);
     width: 1000px;
     color: black;
   }
@@ -15,15 +16,14 @@
 
 } */
 .table-container-new{
-  width:145%;
-  margin-top: 10px;
-  margin-bottom: 15px;
+  /* width:145%; */
+  width: 100%;
+  /* margin-top: 10px; */
   padding: 10px;
   background-color: white;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.292) ;
-  height: calc(50vh - 75px);
-  
+  height: calc(50vh - 75px); 
 }
   #customers th {
     /* padding-bottom: 0px; */
@@ -47,8 +47,9 @@
     border: 1px solid rgb(93, 93, 93);
     background-color: white;
     /* background-image: linear-gradient(to right, #53687E, #2E3B4F); */
-    padding: 5px;
+    padding: 0px;
     width: 500px;
     height: calc(5vh);
     text-align: center;
+    vertical-align: middle;
   }

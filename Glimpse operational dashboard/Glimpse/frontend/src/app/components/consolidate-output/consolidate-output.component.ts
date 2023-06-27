@@ -25,7 +25,7 @@ export class ConsolidateOutputComponent {
           this.loading = false;
           console.log("file received");
           const csvData = response; // Assuming the response contains the CSV data
-          const filename = "GlimpseData"+this.startDate+"-"+this.endDate+".csv"; // Set the custom filename here
+          const filename = "consolidated_output_file_"+this.startDate+"-"+this.endDate+".csv"; // Set the custom filename here
           const blob = new Blob([csvData], { type: 'text/csv' });
           const url = window.URL.createObjectURL(blob);
           const anchor = document.createElement('a');

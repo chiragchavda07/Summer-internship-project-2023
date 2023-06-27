@@ -13,10 +13,9 @@ export class MonthlyOutputComponent {
   public s:string="";
   public e:string="";
   public loading: boolean=false;
-  public filename:string="";
   constructor(public dash:DashboardComponent,public serv:RequestHandlerService){
     this.setSEdate();
-    this.filename = "GlimpseData"+this.s+"-"+this.e+".csv";
+    // this.filename = "GlimpseData"+this.s+"-"+this.e+".csv";
     // this.getMonthlyOpfile();
     // for (let i = 1; i <= 30; i++) {
     //   this.rows.push(i);
@@ -65,7 +64,7 @@ export class MonthlyOutputComponent {
           const url = window.URL.createObjectURL(blob);
           const anchor = document.createElement('a');
           anchor.href = url;
-          anchor.download = this.filename;
+          anchor.download = this.dash.mopFilename;
           anchor.click();
           window.URL.revokeObjectURL(url);
           this.dash.showAlert();
