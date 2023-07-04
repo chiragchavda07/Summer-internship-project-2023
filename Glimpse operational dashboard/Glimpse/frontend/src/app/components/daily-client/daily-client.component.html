@@ -4,18 +4,20 @@
       align-items: center;
       justify-content: center;
       height: 30vh;
-      color: black;
+      color: white;
    }
 </style>
-<div class="table-container-new">
-  <h5 >Daily client file</h5>         
-    <div *ngIf="!this.dash.dailyclientAvailable || this.dash.dailyGrid.length==0"> <h3 class="nd">No data to show</h3> </div>
-    <div *ngIf="this.dash.dailyclientAvailable && this.dash.dailyGrid.length" class="tbl">
-        
-        <table id="customers" class="table table-hover">
+<div class="table-container-new">        
+    <div *ngIf="!this.dash.dailyclientAvailable || this.dash.dailyGrid.length==0"> <h3 class="nd">No data to show for date {{this.dash.searchDate}}</h3> </div>
+    <div *ngIf="this.dash.dailyclientAvailable && this.dash.dailyGrid.length"> 
+      <div style="padding-bottom:5px; border-bottom: 1px solid white;padding-top:10px; background-color: #1b2435; border-top-left-radius: 10px;border-top-right-radius: 10px;">
+        <h5 style="margin-bottom: 0; vertical-align: middle;color: white;margin-left: 10px;">Daily client process file</h5>
+     </div>
+    <div class="xyz"> 
+        <table id="dop" class="table table-hover table-bordered">
         <thead>
             <tr>
-                <th style="width: 40px;">Sr. no.</th>
+                <th style="width: 30px;">Sr. no.</th>
                 <th>Client name</th>
                 <th>Process start time</th>
                 <th>Process end time</th>
@@ -27,37 +29,45 @@
                 <th>Failed to save records</th>
                 <th>Error</th>
                 <th>File name</th>
+                <th>Download</th>
               </tr>
           </thead>
           <tbody>
               <tr *ngFor="let i of this.dash.dailyGrid; let count = index">
-                <td style="width: 40px;">{{count+1}}</td>
+                <td style="width: 30px;">{{count+1}}</td>
                 <td>{{i.user_name}}</td>
-                <td style="white-space: nowrap;">{{jsonify(i.status_details).startTime}}</td>
-                <td style="white-space: nowrap;">{{jsonify(i.status_details).endTime}}</td> 
-                <td style="white-space: nowrap;">{{jsonify(i.status_details).status}}</td>
-                <td>{{jsonify(i.status_details).totalRecords}}</td>
-                <td>{{jsonify(i.status_details).validCount}}</td>
-                <td>{{jsonify(i.status_details).invalidCount}}</td>
-                <td>{{jsonify(i.status_details).successCount}}</td> 
-                <td>{{jsonify(i.status_details).failedCount}}</td> 
-                <td style="white-space: nowrap;" [style.color]="jsonify(i.status_details).error.length ? 'white' : 'black'" [style.background-color]="jsonify(i.status_details).error.length ? 'red' : 'lightgreen'">{{jsonify(i.status_details).error.length? "YES" : "NO" }}
-                  <button style="color: white;padding:0;margin-bottom: 5px;" class="btn btn-link" *ngIf="jsonify(i.status_details).error.length" data-bs-toggle="offcanvas" data-bs-target="#demo" (click)="passIndex(count,i)">show</button></td> 
-                <td style="padding-left: 5px;padding-right: 5px;">{{i.filename}}</td>
+                <td style="white-space: nowrap;padding-left: 5px; padding-right: 5px;">{{i.status_details!=null?jsonify(i.status_details).startTime:'No data'}}</td>
+                <td style="white-space: nowrap;padding-left: 5px; padding-right: 5px;">{{i.status_details!=null?jsonify(i.status_details).endTime:'No data'}}</td> 
+                <td style="white-space: nowrap;">{{i.status_details!=null?jsonify(i.status_details).status:'No data'}}</td>
+                <td>{{i.status_details!=null?jsonify(i.status_details).totalRecords : 'No data'}}</td>
+                <td>{{i.status_details!=null?jsonify(i.status_details).validCount: 'No data'}}</td>
+                <td>{{i.status_details!=null?jsonify(i.status_details).invalidCount: 'No data'}}</td>
+                <td>{{i.status_details!=null?jsonify(i.status_details).successCount: 'No data'}}</td> 
+                <td>{{i.status_details!=null?jsonify(i.status_details).failedCount: 'No data'}}</td> 
+                <td [hidden]="!i.status_details" style="white-space: nowrap;" [style.color]="i.status_details!=null&&jsonify(i.status_details).error.length ? 'white' : 'black'" [style.background-color]="i.status_details!=null&&jsonify(i.status_details).error.length ? 'red' : 'lightgreen'">{{i.status_details!=null?(jsonify(i.status_details).error.length? "YES" : "NO"):'No data' }}
+                  <button [hidden]="!i.status_details" style="color: white;padding:0;margin-bottom: 5px;" class="btn btn-link" *ngIf="i.status_details!=null && jsonify(i.status_details).error.length" data-bs-toggle="offcanvas" data-bs-target="#demo" (click)="passIndex(count,i)">show</button></td> 
+                <td [hidden]="!i.status_details"style="padding-left: 0px;padding-right: 0px;">{{i.filename}}</td>
+                <td>
+                    <button [hidden]="!i.status_details" style="color: white; background-color: rgb(255, 0, 0);" (click)="downloadFile(i.updated_date,i.user_name,i.filename)">Download</button>
+               </td>
               </tr>
           </tbody>
-</table>
+   </table>
+ </div>
+  <div *ngIf="this.dash.opAvailable" style="height: 20px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; background-color: #1b2435;" >
+  </div>
 </div>
-</div>
-<div class="offcanvas offcanvas-start" id="demo" style="width: 750px; margin-top: 100px; margin-bottom: 60px;">
+
+
+<div class="offcanvas offcanvas-start" id="demo" style="color:black; width: 750px; margin-top: 100px; margin-bottom: 60px;">
   <div class="offcanvas-header">
     <h1 class="offcanvas-title">Description of Errors</h1>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
   </div>
-  <div style="width:700px; height:calc(80vh - 100px);" class="table-container-new">
+  <div style=" color:black; width:700px; height:calc(80vh - 100px);" class="table-container-new">
     <h5> Client name : {{this.username}} </h5>
     <h5> File processed : {{this.errorFile}} </h5>
-      <div style="height:calc(70vh - 200px);" class="tbl">
+      <div style="height:calc(70vh - 200px); width: 700px;" class="tbl">
           <table id="customers" class="table table-hover">
           <thead>
                 <tr style="width: 50px;">

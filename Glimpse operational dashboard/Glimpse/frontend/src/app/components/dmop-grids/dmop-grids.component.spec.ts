@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavbarComponent } from './navbar.component';
+import { DmopGridsComponent } from './dmop-grids.component';
 
-describe('NavbarComponent', () => {
-  let component: NavbarComponent;
-  let fixture: ComponentFixture<NavbarComponent>;
+describe('DmopGridsComponent', () => {
+  let component: DmopGridsComponent;
+  let fixture: ComponentFixture<DmopGridsComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [NavbarComponent]
+      declarations: [DmopGridsComponent]
     });
-    fixture = TestBed.createComponent(NavbarComponent);
+    fixture = TestBed.createComponent(DmopGridsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

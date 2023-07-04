@@ -6,32 +6,50 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RequestHandlerService {
-  private server_ip = '192.168.0.161';
-  private server_port = '8090'; 
+  // private server_ip = '10.200.45.78';
+  // private server_port = '8090'; 
+  // private url = 'https://summer-internship-production.up.railway.app'
+  private url = 'http://192.168.0.161:8090'
   constructor(public http:HttpClient) { }
-  downloadCSVdm(id:number):Observable<any>{
-    const params = new HttpParams().set('id',id);
-    return this.http.get(`http://${this.server_ip}:${this.server_port}/download`, { params, responseType: 'blob' })
+  downloadCSVdm(id:number,searchDate:string):Observable<any>{
+    const params = new HttpParams()
+    .set('id',id)
+    .set('searchDate',searchDate);
+    return this.http.get(`${this.url}/download`, { params, responseType: 'blob' })
   } 
-  downloadCons(startDate:string,endDate:string):Observable<any>{
+  downloadCons(startDate:string,endDate:string,capped:boolean):Observable<any>{
     const params = new HttpParams()
     .set('startDate', startDate)
-    .set('endDate', endDate);
+    .set('endDate', endDate)
+    .set('type',capped);
     console.log("*");
-    return this.http.get(`http://${this.server_ip}:${this.server_port}/downloadcons`, { params, responseType: 'blob' })
+    return this.http.get(`${this.url}/downloadcons`, { params, responseType: 'blob' })
   }
-  displayDop():Observable<any[]>{
-    return this.http.get<any[]>(`http://${this.server_ip}:${this.server_port}/showdailyop`)
+  displayDop(searchDate:string):Observable<any[]>{
+    const params = new HttpParams()
+    .set('searchDate',searchDate);
+    return this.http.get<any[]>(`${this.url}/showdailyop`,{params})
   }
-  displayMop():Observable<any[]>{
-    return this.http.get<any[]>(`http://${this.server_ip}:${this.server_port}/showmonthlyop`)
+  displayMop(searchDate:string):Observable<any[]>{
+    const params = new HttpParams()
+    .set('searchDate',searchDate);
+    return this.http.get<any[]>(`${this.url}/showmonthlyop`,{params})
   } 
-  dailyGrid():Observable<any[]>{
-    return this.http.get<any[]>(`http://${this.server_ip}:${this.server_port}/dailyclient`)
+  dailyGrid(searchDate:string):Observable<any[]>{
+    const params = new HttpParams()
+    .set('searchDate',searchDate);
+    return this.http.get<any[]>(`${this.url}/dailyclient`,{params})
   }
-  opGrid(id:number):Observable<any>{
-    const params=new HttpParams().set('id',id);
-    return this.http.get<any>(`http://${this.server_ip}:${this.server_port}/dailyopstat`,{params})
+  downloadClientfile(updatedDate:string,clientName:string,fileName:string):Observable<any>{
+    const params = new HttpParams()
+    .set('updatedDate',updatedDate);
+    console.log("updated date : " + updatedDate);
+    return this.http.get(`${this.url}/${clientName}/${fileName}`, { params, responseType: 'blob' }) 
+  }
+  opGrid(searchDate:string):Observable<any>{
+    const params=new HttpParams()
+    .set('searchDate',searchDate);
+    return this.http.get<any>(`${this.url}/opstat`,{params})
   }
   // dailyOpGrid():Observable<any[]>{
   //   return this.http.get<any[]>(`http://${this.server_ip}:${this.server_port}/dailyclient`)

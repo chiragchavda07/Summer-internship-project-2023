@@ -18,15 +18,12 @@ import { FirebaseOptions } from 'firebase/app';
 import { LoadingComponent } from './components/loading/loading.component';
 import { DailyClientComponent } from './components/daily-client/daily-client.component';
 import { ConsolidateOutputComponent } from './components/consolidate-output/consolidate-output.component';
-import { DailyOutputComponent } from './components/daily-output/daily-output.component';
-import { MonthlyOutputComponent } from './components/monthly-output/monthly-output.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShowfileComponent } from './components/showfile/showfile.component';
+import { DmopGridsComponent } from './components/dmop-grids/dmop-grids.component';
 export const FIREBASE_OPTIONS = new InjectionToken<FirebaseOptions>('FirebaseOptions');
 @NgModule({
   declarations: [
@@ -35,11 +32,8 @@ export const FIREBASE_OPTIONS = new InjectionToken<FirebaseOptions>('FirebaseOpt
     LoadingComponent,
     DailyClientComponent,
     ConsolidateOutputComponent,
-    DailyOutputComponent,
-    MonthlyOutputComponent,
-    NavbarComponent,
-    FooterComponent,
     ShowfileComponent,
+    DmopGridsComponent,
   ],
   imports: [
     BrowserModule,

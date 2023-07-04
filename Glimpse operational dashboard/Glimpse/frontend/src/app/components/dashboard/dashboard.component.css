@@ -14,15 +14,11 @@
   width: 200px;
   font-size: large;
 }
-.conso-lb{
-  height: auto;
-  width: 100px;
-}
 .dashboard{
   display: grid;
-  width: calc(100vw);
-  grid-template-rows: auto 1fr auto; /* Adjust the row sizes as needed */
-  height: calc(100vh - 95px); /* Set the height of the dashboard container */
+  /* grid-template-rows: auto 1fr auto; Adjust the row sizes as needed */
+  height: calc(100vh - 97px);
+  /* height:100%; */
   background-image: linear-gradient(to bottom, #303C55, #1B2435);
 }
 
@@ -44,7 +40,8 @@
 
 .header {
   background-image: linear-gradient(to bottom, #303C55, #1B2435);
-  width: calc(100vw);
+  /* width: calc(100vw); */
+  max-width: 100vw;
 }
 
 .header-container {
@@ -154,20 +151,6 @@
 
 
 
-.footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 50px; /* Adjust this value to set the height of the footer */
-  /* background-color: #f8f9fa; */
-  /* background-color: rgb(81, 172, 224); */
-  background-image: linear-gradient(to bottom, #303C55, #1B2435);
-  /* background-image: linear-gradient(to bottom, #E8EAF6, #C5CAE9); */
-  /* padding: 10px; */
-  /* border-top: 1px solid #ccc; */
-  display: flex;
-    justify-content: flex-end;
-}
 
 .overlay {
   position: absolute;
@@ -188,7 +171,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: calc(100vh - 98px);
+  height: 93%;
   z-index: 9999;
   display: flex;
   align-items: center;

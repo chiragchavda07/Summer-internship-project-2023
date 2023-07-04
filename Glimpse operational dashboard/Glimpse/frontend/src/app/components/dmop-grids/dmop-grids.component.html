@@ -1,0 +1,59 @@
+<style>
+    .nd{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: calc(30vh - 0px);
+     }
+ </style>
+ <div class="table-container-new">
+    <div *ngIf="!this.dash.opAvailable || this.dash.opGrid.length==0"> <h3 class="nd">No data to show for date {{this.dash.searchDate}}</h3> </div>
+    <div *ngIf="this.dash.opAvailable && this.dash.opGrid.length">
+    <div *ngIf="this.dash.opAvailable" style="border-bottom: 1px solid white; border-top-left-radius: 10px; border-top-right-radius: 10px; background-color: #1b2435;" class="d-flex justify-content-between">
+
+        <div style="padding-top:10px;">
+            <h5 style=" vertical-align: middle;color: white;margin-left: 10px;">Daily and Monthly output file</h5>
+        </div>   
+    </div>
+      <!-- <div *ngIf="!this.dash.opAvailable"> <h3 class="nd">No data to show</h3> </div>  -->
+      <div  class="tbl xyz">
+          <table id="dop" class="table table-hover table-bordered">
+              <thead>     
+               <tr>
+                <th style="width: 40px;">Sr. No.</th>
+                <th>File type</th>
+                <th>File name</th>
+                <th>Process time</th>
+                <th>Total records</th>
+                <th>File extension</th>
+                <th>View/download</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let i of this.dash.opGrid; let count = index" >
+                <td>{{count+1}}</td>
+                <td>{{jsonify(i.status_details).pushStatus.fileType}}</td>
+                <td>{{i.filename}}</td>
+                <td style="white-space: nowrap;">{{jsonify(i.status_details).pushStatus.startTimeStamp}}</td>
+                <td>{{jsonify(i.status_details).pushStatus.totalRowsSaved}}</td>
+                <td>{{jsonify(i.status_details).pushStatus.fileExtension}}</td>
+                <td>
+                    <button style="color: white; background-color: rgb(0, 255, 145); " (click)="showFile((jsonify(i.status_details).pushStatus.fileType=='Daily') ? 0:1)">View</button>
+                    <button style="color: white; background-color: rgb(255, 0, 0);" (click)="downloadThisfile((jsonify(i.status_details).pushStatus.fileType=='Daily') ? 0:1,i.filename)">Download</button>
+                 </td>
+              </tr>        
+           </tbody>
+    </table>
+  </div>
+<div *ngIf="this.dash.opAvailable" style="height: 20px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; background-color: #1b2435;" >
+</div>
+ <!-- <div class="button-container">
+     <button class="btn btn-primary btn-css btn-sm" (click)="showFile(1)">View</button>
+     <button class="btn btn-secondary btn-sm" (click)="downloadThisfile()"><i class="fas fa-download"></i>  Download</button>
+ </div> -->
+</div>
+
+<!-- Optional: jQuery and Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>

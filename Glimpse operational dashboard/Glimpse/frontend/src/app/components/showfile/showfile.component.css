@@ -17,8 +17,7 @@
     overflow-x: auto;
     overflow-y: auto;
     /* width:1500px; */
-    
-    width: calc(200vh );
+    width: calc(200vh - 200px );
     height: calc(100vh - 180px);
     /* border: #1B2435 solid; */
   } 
@@ -67,4 +66,34 @@
     background-image: linear-gradient(to right, #303C55, #1B2435);
     color:white;
     width: 300px;
+  }
+
+  #dop th {
+    position: sticky;
+    top: 0px; /* Adjust the top position to match the height of the fixed header */
+    z-index: 1;
+  }
+  #dop th {
+    border-top:black;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    overflow-x: auto;
+    background-color:#1b2435;
+    color:white;
+    /* width: 700px; */
+    width: 500px;
+  }
+  #dop tr{
+    border-bottom : 0px;
+  }
+  #dop td {
+    background-color: #1b2435a7;
+    padding: 0px;
+    width: 500px;
+    text-align: center;
+    vertical-align: middle;
+    color: white;
   }

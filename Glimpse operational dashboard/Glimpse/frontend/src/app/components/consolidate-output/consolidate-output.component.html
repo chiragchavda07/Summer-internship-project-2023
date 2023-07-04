@@ -1,35 +1,134 @@
 <div class="table-container-new">
-<h5 >Consolidate output file</h5>
-
-    <form (ngSubmit)="datePick()" >
-        <div style="width: calc(10vh);" class="form-group">
-            <div class="conso-lb">
-                <label for="sdate"> Start Date</label>
-                <input type="date" id="sdate" name="sdate" step="1" [(ngModel)]="startDate">
+    <div style="height: calc(50vh - 115px); box-shadow: 0 4px 4px rgba(0, 0, 0, 0.292); padding: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px; background-color: #1b2435;">
+        <h5 >Consolidate output file</h5> 
+        <div style="margin-top: 10px; margin-bottom: 10px;">
+            <!-- <label [ngStyle]="{ 'font-weight': capped ? 'bold' : 'normal' }" for="uncapped"> Capped output</label>
+                <input style="margin-left: 10px;" type="checkbox" id="uncapped" name="uncapped" (change)="toggleVariable()"> -->
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="checkbox" (change)="toggleVariable()">
+                    <label class="form-check-label" for="checkbox">Capped output</label>
+                </div>
+        </div>
+    <form (ngSubmit)="datePick()">
+        <div class="form-group">
+            <div style="display: flex;">
+                <div style="vertical-align: middle;">
+                    <label style="margin-right: 10px;" for="sdate"> Start Date</label>
+                    <input type="date" id="sdate" name="sdate" step="1" [(ngModel)]="startDate">
+                </div>
             </div>
-            <div class="conso-lb">
-            <label for="edate"> End Date</label>
-            <input type="date" id="edate" name="edate" step="1" [(ngModel)]="endDate">
+            <div style="display: flex;">
+                <div style="vertical-align: middle;">
+                    <label style="margin-right: 16px;vertical-align: middle;"for="edate"> End Date</label>
+                    <input type="date" id="edate" name="edate" step="1" [(ngModel)]="endDate">
+                </div>
             </div>
             <div class="button-container">
-                <button style="margin-top: 10px; margin-bottom: 10px;" class="btn btn-secondary btn-css btn-sm" (click)="datePick()"><i class="fas fa-download"></i>  Download</button>
+                <button style="margin-top: 10px; margin-bottom: 10px;" class="btn btn-secondary btn-css btn-sm"><i class="fas fa-download"></i>  Download</button>
             </div>
          </div>
     </form>
-
+</div>
+<div style="height: 20px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; background-color: #1b2435;" >
 </div>
 
+</div>
 <div *ngIf="loading" class=" mt-5 overlay-load">
-    <h2>
+    <!-- <h2>
         It will take time to download the file Please wait . . .   
     </h2>
     <div class="spinner-border m-4" role="status">
       <span class="sr-only">Loading...</span>
-    </div>
+    </div> -->
+    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
   </div>
   
   <!-- Optional: jQuery and Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  
+  
+<style>
+    .lds-spinner {
+      color: official;
+      display: inline-block;
+      position: relative;
+      width: 80px;
+      height: 80px;
+    }
+    .lds-spinner div {
+      transform-origin: 40px 40px;
+      animation: lds-spinner 1.2s linear infinite;
+    }
+    .lds-spinner div:after {
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 3px;
+      left: 37px;
+      width: 6px;
+      height: 18px;
+      border-radius: 20%;
+      background: #fff;
+    }
+    .lds-spinner div:nth-child(1) {
+      transform: rotate(0deg);
+      animation-delay: -1.1s;
+    }
+    .lds-spinner div:nth-child(2) {
+      transform: rotate(30deg);
+      animation-delay: -1s;
+    }
+    .lds-spinner div:nth-child(3) {
+      transform: rotate(60deg);
+      animation-delay: -0.9s;
+    }
+    .lds-spinner div:nth-child(4) {
+      transform: rotate(90deg);
+      animation-delay: -0.8s;
+    }
+    .lds-spinner div:nth-child(5) {
+      transform: rotate(120deg);
+      animation-delay: -0.7s;
+    }
+    .lds-spinner div:nth-child(6) {
+      transform: rotate(150deg);
+      animation-delay: -0.6s;
+    }
+    .lds-spinner div:nth-child(7) {
+      transform: rotate(180deg);
+      animation-delay: -0.5s;
+    }
+    .lds-spinner div:nth-child(8) {
+      transform: rotate(210deg);
+      animation-delay: -0.4s;
+    }
+    .lds-spinner div:nth-child(9) {
+      transform: rotate(240deg);
+      animation-delay: -0.3s;
+    }
+    .lds-spinner div:nth-child(10) {
+      transform: rotate(270deg);
+      animation-delay: -0.2s;
+    }
+    .lds-spinner div:nth-child(11) {
+      transform: rotate(300deg);
+      animation-delay: -0.1s;
+    }
+    .lds-spinner div:nth-child(12) {
+      transform: rotate(330deg);
+      animation-delay: 0s;
+    }
+    @keyframes lds-spinner {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+    
+  </style>
   

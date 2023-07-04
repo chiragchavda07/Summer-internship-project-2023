@@ -1,7 +1,7 @@
 <div class="showHeader">
     <div class="left-side">
-      <h4 *ngIf="fileId==1">Daily output file</h4>
-      <h4 *ngIf="fileId==2">Monthly output file</h4>
+      <h4 *ngIf="fileId==0">Daily output file</h4>
+      <h4 *ngIf="fileId==1">Monthly output file</h4>
       <h4 *ngIf="fileId==3">Consolidated output file</h4>
     </div>
     <div class="right-side">
@@ -13,7 +13,7 @@
     <div *ngIf="tableArray.length==0">
       No data found
     </div>
-    <table id="customers">
+    <table id="dop" class="table table-bordered">
     <thead>
         <tr>
           <th>Sr. no.</th>

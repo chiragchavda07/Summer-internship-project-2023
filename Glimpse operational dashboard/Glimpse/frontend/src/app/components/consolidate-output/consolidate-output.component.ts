@@ -12,20 +12,23 @@ export class ConsolidateOutputComponent {
   public startDate: string ="";
   public endDate: string ="";
   public loading:boolean=false;
+  public capped:boolean=false;
   constructor(public dash:DashboardComponent,public serv:RequestHandlerService){
   }
   datePick()
   {
-    console.log(this.startDate + " " + this.endDate + " range consolidate output file downloaded ");
     if(this.validDate()){
+      console.log(this.startDate + " " + this.endDate + " range consolidate output file downloaded ");
       this.loading=true;
-      const download$ = this.serv.downloadCons(this.startDate,this.endDate)
+      const download$ = this.serv.downloadCons(this.startDate,this.endDate,this.capped);
       download$.subscribe(
         response => {
           this.loading = false;
           console.log("file received");
           const csvData = response; // Assuming the response contains the CSV data
-          const filename = "consolidated_output_file_"+this.startDate+"-"+this.endDate+".csv"; // Set the custom filename here
+          const s = (this.capped ? "_capped":"_uncapped");
+          const filename = "consolidated_output_file_"+this.startDate+"-"+this.endDate + s + ".csv"; // Set the custom filename here
+          console.log(filename);
           const blob = new Blob([csvData], { type: 'text/csv' });
           const url = window.URL.createObjectURL(blob);
           const anchor = document.createElement('a');
@@ -37,7 +40,9 @@ export class ConsolidateOutputComponent {
         },
         (error:any)=>{
           this.loading = false;
-          alert("Consolidate output file couldn't downloaded ");
+          setTimeout(() => {
+            alert("Consolidate output file couldn't downloaded ");
+          },10);
         }
       )
 
@@ -67,5 +72,8 @@ export class ConsolidateOutputComponent {
     const endDateMoment = moment(this.endDate);
     const today = moment()
     return startDattMoment.isBefore(endDateMoment) && (endDateMoment.isSameOrBefore(today));
+  }
+  toggleVariable(){
+     this.capped = !this.capped;
   }
 }

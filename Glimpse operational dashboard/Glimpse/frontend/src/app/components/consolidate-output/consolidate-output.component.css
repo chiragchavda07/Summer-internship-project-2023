@@ -1,15 +1,21 @@
 @import url(../dashboard/dashboard.component.css);
 .table-container-new{
-    /* width: 65%; */
-    width: 100%;;
-    /* margin-top: 10px; */
-    /* margin-left: 175px; */
-    /* margin-bottom: 15px; */
-    margin-left: 0;
-    margin-right: 0;
-  padding: 20px;
-  background-color: white;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.292);
-  height: calc(50vh - 75px);
+    position: relative;
+    padding: 10px;
+    background-image: linear-gradient(to bottom, #f9f6f63a, #f9f6f629);
+    border-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.292);
+    color: white;
+    height: calc(50vh - 72.5px);
+    margin-bottom: 15px;
+    margin-top: 7.5px;
+    width: 100%;
+  }
+  @media (max-width: 768px) {
+    .table-container-new {
+      width: 100%;
+      height: auto; /* Adjust as needed */
+    }
   }
