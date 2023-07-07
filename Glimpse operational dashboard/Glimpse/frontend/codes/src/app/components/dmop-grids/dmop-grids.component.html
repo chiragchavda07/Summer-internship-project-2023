@@ -37,7 +37,7 @@
                 <td style="white-space: nowrap;">{{jsonify(i.status_details).pushStatus.startTimeStamp}}</td>
                 <td>{{jsonify(i.status_details).pushStatus.totalRowsSaved}}</td>
                 <td>{{jsonify(i.status_details).pushStatus.fileExtension}}</td>
-                <td style="white-space: nowrap;">
+                <td>
                     <button style="color: white; background-color: rgb(0, 255, 145); " (click)="showFile((jsonify(i.status_details).pushStatus.fileType=='Daily') ? 0:1)">View</button>
                     <button style="color: white; background-color: rgb(255, 0, 0);" (click)="downloadThisfile((jsonify(i.status_details).pushStatus.fileType=='Daily') ? 0:1,i.filename)">Download</button>
                  </td>
