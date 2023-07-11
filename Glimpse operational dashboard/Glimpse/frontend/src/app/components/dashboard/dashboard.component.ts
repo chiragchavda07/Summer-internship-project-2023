@@ -2,8 +2,7 @@
 import { Component,Injectable } from '@angular/core';
 // import { AuthService } from '../../services/auth/auth.service';
 import { RequestHandlerService } from 'src/app/services/request-handler.service';
-import { Observable, forkJoin } from 'rxjs';
-import { object } from 'prop-types';
+import { forkJoin } from 'rxjs';
 import * as moment from 'moment';
 
 @Injectable({

@@ -8,8 +8,7 @@ import { Observable } from 'rxjs';
 export class RequestHandlerService {
   // private server_ip = '10.200.45.78';
   // private server_port = '8090'; 
-  private url = 'https://summer-internship-production.up.railway.app'
-  // private url = 'http://192.168.0.161:8090'
+  private url = 'http://35.178.89.183/api'
   constructor(public http:HttpClient) { }
   downloadCSVdm(id:number,searchDate:string):Observable<any>{
     const params = new HttpParams()
