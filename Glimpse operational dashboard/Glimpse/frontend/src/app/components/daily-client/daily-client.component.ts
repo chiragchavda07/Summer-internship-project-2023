@@ -12,10 +12,11 @@ export class DailyClientComponent {
   public errorFile:string="Errorfile";
   public username:string="Username";
   public rw:any[]=[];
+  public expand:boolean=false;
   constructor(public dash:DashboardComponent,public serve:RequestHandlerService){
-   for(var i=0;i<50;i++){
-    this.rw[i] = i+1; 
-   }
+  //  for(var i=0;i<50;i++){
+  //   this.rw[i] = i+1; 
+  //  }
   }
   jsonify(value:string){
     if(!value) return 
@@ -56,4 +57,7 @@ export class DailyClientComponent {
       }
     )
   }
+ changeExpand(){
+  this.expand = !this.expand;
+ }
 }

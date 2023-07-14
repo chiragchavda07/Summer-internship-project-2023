@@ -13,10 +13,13 @@ export class ConsolidateOutputComponent {
   public endDate: string ="";
   public loading:boolean=false;
   public capped:boolean=false;
+  public universe:boolean=false;
+  public filename:string='';
   constructor(public dash:DashboardComponent,public serv:RequestHandlerService){
   }
   datePick()
   {
+    console.log(this.startDate + " " + this.endDate + " range consolidate output file downloaded ");
     if(this.validDate()){
       console.log(this.startDate + " " + this.endDate + " range consolidate output file downloaded ");
       this.loading=true;
@@ -26,14 +29,21 @@ export class ConsolidateOutputComponent {
           this.loading = false;
           console.log("file received");
           const csvData = response; // Assuming the response contains the CSV data
-          const s = (this.capped ? "_capped":"_uncapped");
-          const filename = "consolidated_output_file_"+this.startDate+"-"+this.endDate + s + ".csv"; // Set the custom filename here
-          console.log(filename);
+          if(this.startDate=="*")
+          {
+            const today = new Date().toISOString().slice(0, 10);
+            this.filename = "consolidated_output_file_"+ today+".csv"; //if download file is having all output data till today
+          }
+          else{
+            const s = (this.capped ? "_capped":"_uncapped");
+            this.filename = "consolidated_output_file_"+this.startDate+"-"+this.endDate + s + ".csv"; // Set the custom filename here
+          }
+          console.log(this.filename);
           const blob = new Blob([csvData], { type: 'text/csv' });
           const url = window.URL.createObjectURL(blob);
           const anchor = document.createElement('a');
           anchor.href = url;
-          anchor.download = filename;
+          anchor.download = this.filename;
           anchor.click();
           window.URL.revokeObjectURL(url);
           this.dash.showAlert();
@@ -64,16 +74,26 @@ export class ConsolidateOutputComponent {
     }
 
   }
-  showFile(value:number){
-    this.dash.showFile(value);
-  }
+  // showFile(value:number){
+  //   this.dash.showFile(value);
+  // }
   validDate():boolean{
+    if(this.startDate=="*") return true;
     const startDattMoment = moment(this.startDate);
     const endDateMoment = moment(this.endDate);
-    const today = moment()
+    const today = moment();
     return startDattMoment.isBefore(endDateMoment) && (endDateMoment.isSameOrBefore(today));
   }
   toggleVariable(){
      this.capped = !this.capped;
+  }
+  updateUniverse(value: boolean) {
+    if(value){
+      this.startDate = "*";
+      this.endDate = "*";
+      console.log(this.startDate);
+      console.log(this.endDate);
+    }
+    this.universe=value;
   }
 }

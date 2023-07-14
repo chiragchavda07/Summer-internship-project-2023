@@ -17,11 +17,11 @@ export class DmopGridsComponent {
       this.rw[i] = i+1; 
      }
   }
-  async downloadThisfile(type:number,filename:string){
+  async downloadThisfile(filename:string,path:string){
     this.dash.loading=true;
     console.log("***enter to dowm")
     try {
-      const response = await this.serv.downloadCSVdm(type,this.dash.searchDate).toPromise();
+      const response = await this.serv.downloadCSVdm(filename,path).toPromise();
       this.dash.loading = false;
           if(!response){
             setTimeout(() => {
@@ -47,8 +47,8 @@ export class DmopGridsComponent {
     }
   }
  
-  showFile(value:number){
-    this.dash.showFile(value);
+  showFile(value:number,filename:string,path:string){
+    this.dash.showFile(value,filename,path);
   }
   jsonify(value:string){
     return JSON.parse(value);

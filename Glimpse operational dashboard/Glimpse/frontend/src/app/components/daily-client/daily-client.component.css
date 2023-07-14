@@ -33,11 +33,12 @@
   }
   #dop th {
     border-top:black;
-    text-align: center;
+    text-align: left;
     vertical-align: middle;
     margin-top: 0px;
     padding-top: 0px;
     padding-bottom: 0px;
+    padding-left: 5px;
     overflow-x: auto;
     background-color:#1b2435;
     color:white;
@@ -50,8 +51,9 @@
   #dop td {
     background-color: #1b2435a7;
     padding: 0px;
+    padding-left: 5px;
     width: 500px;
-    text-align: center;
+    text-align: left;
     vertical-align: middle;
     color: white;
   }
@@ -83,13 +85,13 @@
     border: 1px solid rgb(93, 93, 93);
     background-color: white;
     /* background-image: linear-gradient(to right, #53687E, #2E3B4F); */
-    padding: 0px;
-    text-align: center;
+    padding:0;
+    text-align: left;
   }
   #customers th {
     vertical-align: middle;
     border-top:black;
-    text-align: center;
+    text-align: left;
     margin-top: 0px;
     padding-bottom: 0px;
     height: 15px;

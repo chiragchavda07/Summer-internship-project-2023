@@ -10,8 +10,14 @@
     </div>
     <div style="display: flex;padding-top: 10px;" >
       <div style="vertical-align: middle;">
-          <label style="color:white; margin-bottom: 5px; vertical-align:middle; margin-left: 10px; margin-right: 10px;" for="date"><h5>Date</h5></label>
-          <input style="margin-bottom: 10px; size:100px;text-align:center;vertical-align:middle; width: 150px; background-color: white" type="date" id="date" name="date" step="1" [(ngModel)]="searchDate">
+
+
+          <label style="color:white; margin-bottom: 5px; vertical-align:middle; margin-left: 10px; margin-right: 10px;" for="sdate"><h5>Start date(bst)</h5></label>
+          <input style="margin-bottom: 10px; size:100px;text-align:center;vertical-align:middle; width: 150px; background-color: white" type="date" id="sdate" name="sdate" step="1" [(ngModel)]="startDate">
+          <input style="margin-bottom: 10px; size:100px;text-align:center;vertical-align:middle; background-color: white" type="time" [(ngModel)]="startTime">
+          <label style="color:white; margin-bottom: 5px; vertical-align:middle; margin-left: 10px; margin-right: 10px;" for="edate"><h5>End date(bst)</h5></label>
+          <input style="margin-bottom: 10px; size:100px;text-align:center;vertical-align:middle; width: 150px; background-color: white" type="date" id="edate" name="edate" step="1" [(ngModel)]="endDate">
+          <input style="margin-bottom: 10px; size:100px;text-align:center;vertical-align:middle;background-color: white" type="time" [(ngModel)]="endTime">
           <button style="margin-bottom: 10px; color: white; background-color: rgba(148, 201, 251, 0.858); vertical-align:middle; margin-left: 10px ; margin-right: 10px;" (click)="this.displayGrids()"> Search </button>
           <button style="margin-bottom: 10px; color: white; background-color: rgba(148, 201, 251, 0.858); vertical-align:middle; margin-left: 0px ; margin-right: 10px;" (click)="this.displayGrids()"> <i class="fas fa-sync-alt"></i>Refresh</button>
       </div>
@@ -23,7 +29,8 @@
 <div class="dashboard">
    
     <div class="container-fluid">
-      <div class="row" style="height: calc(50vh - 50px);">
+      <!-- <div class="row"  style="height: calc(50vh - 50px);"> -->
+      <div class="row" [ngStyle]="tableStyle">
         <div class="col">
           <app-daily-client></app-daily-client>
         </div>

@@ -17,7 +17,9 @@ export class DashboardComponent {
     public currentTime:string | undefined;
     public showF:number=0;
     public startDate: string ="";
+    public startTime:string="";
     public endDate: string ="";
+    public endTime:string="";
     public capped:boolean=false;
     public fID:number=-1;
     public tableArr: any[] = [];
@@ -37,10 +39,11 @@ export class DashboardComponent {
     public opAvailable:boolean=false;
     public greeting:number=-1;
     public searchDate:string="";
+    public expand:boolean=false;
     ngOnInit()
     {
-      this.setSearchDate();
-      this.displayGrids();  //I'm loading daily and monthly output file at the time of initialization of dashboard
+      this.setseDate();
+      // this.displayGrids();  //I'm loading daily and monthly output file at the time of initialization of dashboard
       this.updateCurrentTime(); // Call the method to set initial current time
     setInterval(() => {
       this.getTimeIndex();
@@ -50,8 +53,30 @@ export class DashboardComponent {
    
     constructor(private serv:RequestHandlerService){}
     
-    setSearchDate(){
-      this.searchDate = new Date().toISOString().slice(0, 10);
+    public tableStyle: any = {
+      'height': 'calc(50vh - 50px)'
+    };
+    changeStyle(){
+      this.expand = !this.expand;
+      if(this.expand){
+        this.tableStyle = {
+         'height': 'calc(50vh)'
+        }
+      }
+      else{
+        this.tableStyle = {
+          'height': 'calc(50vh - 50px)'
+         }
+      }
+    }
+
+
+    setseDate(){
+      this.startDate = new Date().toISOString().slice(0, 10);
+      this.endDate = new Date().toISOString().slice(0, 10);
+      const currentTime = new Date();
+      this.startTime= currentTime.getHours() + ":" + currentTime.getMinutes();
+      this.endTime= currentTime.getHours() + ":" + currentTime.getMinutes();
     }
     setEndDate(value:string){
       this.endDate =  value;
@@ -84,30 +109,11 @@ export class DashboardComponent {
         });
        // Set the current time
     }
-    // downloadCons():void{
-    //   if(this.startDate=="" ||this.endDate=="") 
-    //    {
-    //     alert("Please enter the date range");
-    //     return;
-    //    }
-    //   this.serv.downloadCons(this.startDate,this.endDate,this.capped).subscribe(
-    //     response => {
-    //       console.log("file received");
-    //       const blob = new Blob([response], { type: 'text/csv' });
-    //       const url = window.URL.createObjectURL(blob);
-    //       window.open(url);
-    //     },
-    //     (error:any)=>{
-    //       alert("Server connection error ");
-    //     }
-    //   )
-    //   this.startDate = "";
-    //   this.endDate = "";
-    // }
-    async displayOp():Promise<void>{  //to display daily and monthly output file
+ 
+    async displayOp(filename:string,path:string):Promise<void>{  //to display daily and monthly output file
       if(this.fID==0){ //to show daily output file
         try {
-          const responce = await this.serv.displayDop(this.searchDate).toPromise();
+          const responce = await this.serv.displayDop(filename,path).toPromise();
           this.tableArr = responce as any[];
           this.loading=false;
           if (this.tableArr.length) {
@@ -127,7 +133,7 @@ export class DashboardComponent {
       }
       else if(this.fID==1){//to show monthly output file
         try {
-          const responce = await this.serv.displayMop(this.searchDate).toPromise();
+          const responce = await this.serv.displayMop(filename,path).toPromise();
           this.tableArr = responce as any[];
           this.loading=false;
           if (this.tableArr.length) {
@@ -136,7 +142,7 @@ export class DashboardComponent {
             console.log("monthly output file arrived but there is no data");
             setTimeout(() => {
             alert("No data found");
-          },10);
+           },10);
           }
         } catch (error) {
           this.loading = false;
@@ -149,10 +155,13 @@ export class DashboardComponent {
     displayGrids(): void {
       if(this.validateSearchDate()){
         this.loading = true;
-        console.log("search date : " + this.searchDate);
-        const dailyGrid$ = this.serv.dailyGrid(this.searchDate);
+        console.log("start date : " + this.startDate);
+        console.log("end date : " + this.endDate);
+        // const dailyGrid$ = this.serv.dailyGrid(this.startDate,this.startTime,this.endDate,this.endTime);
+        const dailyGrid$ = this.serv.dailyGrid(this.startDate,this.startTime,this.endDate,this.endTime);
         console.log("daily client grid called")
-        const opGrids$ = this.serv.opGrid(this.searchDate);
+        // const opGrids$ = this.serv.opGrid(this.startDate,this.endDate);
+        const opGrids$ = this.serv.opGrid(this.startDate,this.startTime,this.endDate,this.endTime);
         console.log("dmop grid called");
       forkJoin([dailyGrid$,opGrids$]).subscribe(
         ([dailyGridResponse, opGridResponce]) => {
@@ -181,12 +190,12 @@ export class DashboardComponent {
       }
     }
     
-    async showFile(value:number){
+    async showFile(value:number,filename:string,path:string){
       // this.showF=1;
       this.fID = value;
       console.log("table array length before api call : " + this.tableArr.length);
       this.loading=true;
-      await this.displayOp();
+      await this.displayOp(filename,path);
       console.log("table array length after api call : " + this.tableArr.length);
       if(this.tableArr.length) 
       {
@@ -205,9 +214,11 @@ export class DashboardComponent {
       },3000);
     }
     validateSearchDate(){
-      const sdate = moment(this.searchDate);
+      console.log(this.startTime + " " +  this.endTime);
+      const sdate = moment(this.startDate);
+      const edate = moment(this.endDate);
       const today = moment();
-      return sdate.isSameOrBefore(today);
+      return sdate.isSameOrBefore(edate) && edate.isSameOrBefore(today);
     }
   }
 

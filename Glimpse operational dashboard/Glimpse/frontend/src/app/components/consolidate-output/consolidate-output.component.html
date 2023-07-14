@@ -4,31 +4,64 @@
         <div style="margin-top: 10px; margin-bottom: 10px;">
             <!-- <label [ngStyle]="{ 'font-weight': capped ? 'bold' : 'normal' }" for="uncapped"> Capped output</label>
                 <input style="margin-left: 10px;" type="checkbox" id="uncapped" name="uncapped" (change)="toggleVariable()"> -->
-                <div class="form-check form-switch">
+                <!-- <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" id="checkbox" (change)="toggleVariable()">
                     <label class="form-check-label" for="checkbox">Capped output</label>
+                </div> -->
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" [(ngModel)]="capped" [value]="false" (change)="updateUniverse(false)" checked>
+                  <label class="form-check-label" for="flexRadioDefault1">
+                    Uncapped data  (BloombergData)
+                  </label>
                 </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" [(ngModel)]="capped" [value]="true" (change)="updateUniverse(false)" >
+                  <label class="form-check-label" for="flexRadioDefault2">
+                    Capped data  (GlimpseData)
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3"  (change)="updateUniverse(true)">
+                  <label class="form-check-label" for="flexRadioDefault3">
+                    All time output data
+                  </label>
+                </div>
+                <!-- <label>
+                  <input type="radio" name="radioGroup" [(ngModel)]="capped" [value]="false">
+                  Uncapped data  (BloombergData)
+                </label>
+                <label>
+                  <input type="radio" name="radioGroup" [(ngModel)]="capped" [value]="true">
+                  Capped data  (GlimpseData)
+                </label> -->
         </div>
+  <div *ngIf="universe">
+    <div class="button-container">
+      <button style="margin-top: 10px; margin-bottom: 10px; background-color: red;" class="btn btn-secondary btn-css" (click)="datePick()"><i class="fas fa-download"></i>  Download all time data</button>
+    </div>
+  </div>
+  <div *ngIf="!universe">
     <form (ngSubmit)="datePick()">
-        <div class="form-group">
-            <div style="display: flex;">
-                <div style="vertical-align: middle;">
-                    <label style="margin-right: 10px;" for="sdate"> Start Date</label>
-                    <input type="date" id="sdate" name="sdate" step="1" [(ngModel)]="startDate">
-                </div>
-            </div>
-            <div style="display: flex;">
-                <div style="vertical-align: middle;">
-                    <label style="margin-right: 16px;vertical-align: middle;"for="edate"> End Date</label>
-                    <input type="date" id="edate" name="edate" step="1" [(ngModel)]="endDate">
-                </div>
-            </div>
-            <div class="button-container">
-                <button style="margin-top: 10px; margin-bottom: 10px; background-color: red;" class="btn btn-secondary btn-css btn-sm"><i class="fas fa-download"></i>  Download</button>
-            </div>
-         </div>
-    </form>
-</div>
+      <div class="form-group">
+        <div style="display: flex;">
+          <div style="vertical-align: middle;">
+            <label style="margin-right: 10px;" for="sdate"> Start Date</label>
+            <input type="date" id="sdate" name="sdate" step="1" [(ngModel)]="startDate">
+          </div>
+        </div>
+        <div style="display: flex;">
+          <div style="vertical-align: middle;">
+            <label style="margin-right: 15.5px;vertical-align: middle;"for="edate"> End Date</label>
+            <input type="date" id="edate" name="edate" step="1" [(ngModel)]="endDate">
+          </div>
+        </div>
+        <div class="button-container">
+          <button style="margin-top: 10px; margin-bottom: 10px; background-color: red;" class="btn btn-secondary btn-css btn-sm"><i class="fas fa-download"></i>  Download</button>
+        </div>
+      </div>
+     </form>
+   </div>
+ </div>
 <div style="height: 20px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; background-color: #1b2435;" >
 </div>
 
